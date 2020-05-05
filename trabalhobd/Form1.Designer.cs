@@ -42,6 +42,9 @@
             this.p1g10DataSet1 = new trabalhobd.p1g10DataSet1();
             this.jogadoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jogadoresTableAdapter = new trabalhobd.p1g10DataSet1TableAdapters.jogadoresTableAdapter();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSetBindingSource)).BeginInit();
@@ -96,7 +99,6 @@
             this.button7.TabIndex = 5;
             this.button7.Text = "Adicionar";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
@@ -106,7 +108,6 @@
             this.button8.TabIndex = 6;
             this.button8.Text = "Editar";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -116,7 +117,6 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "Remover";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // dataGridView1
             // 
@@ -153,9 +153,44 @@
             // 
             this.jogadoresTableAdapter.ClearBeforeFill = true;
             // 
+            // button10
+            // 
+            this.button10.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button10.Location = new System.Drawing.Point(468, 12);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(146, 69);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Staff";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(620, 12);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(146, 69);
+            this.button11.TabIndex = 10;
+            this.button11.Text = "Centros de Treino";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(773, 12);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(146, 69);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "Estádios";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(937, 573);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -196,6 +231,9 @@
         private p1g10DataSet1 p1g10DataSet1;
         private System.Windows.Forms.BindingSource jogadoresBindingSource;
         private p1g10DataSet1TableAdapters.jogadoresTableAdapter jogadoresTableAdapter;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }
 

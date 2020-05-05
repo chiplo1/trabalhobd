@@ -48,21 +48,41 @@ namespace trabalhobd
 
         private void button4_Click(object sender, EventArgs e)
         {
-            label2.Text = "Lista de jogadores do clube :";
+            label2.Text = "Lista de jogadores do clube:";
             loadJogadores();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            label2.Text = "Lista de sócios do clube :";
+            label2.Text = "Lista de sócios do clube:";
             loadSocios();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            label2.Text = "Lista de claques do clube :";
+            label2.Text = "Lista de claques do clube:";
             loadClaques();
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            label2.Text = "Lista do Staff do clube:";
+            loadStaff();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            label2.Text = "Lista dos Centros de Treino do clube:";
+            loadCentrosTreino();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            label2.Text = "Lista dos Estádios:";
+            loadEstadios();
+        }
+
+     
 
         private void loadJogadores()
         {
@@ -168,19 +188,100 @@ namespace trabalhobd
 
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void loadStaff()
         {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Staff", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
 
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Nome");
+            dt.Columns.Add("Tipo");
+            dt.Columns.Add("Data Término");
+
+            while (reader.Read())
+            {
+                Staff S = new Staff();
+                S.Id_staff = reader["id_staff"].ToString();
+                S.Id_pessoa = reader["id_pessoa"].ToString();
+                S.Tipo = reader["tipo"].ToString();
+                S.Data_termino = reader["data_termino"].ToString().Substring(0, 10);
+
+                dt.Rows.Add(S.Id_staff, S.Id_pessoa, S.Tipo, S.Data_termino);
+
+            }
+
+            dataGridView1.DataSource = dt;
+            cn.Close();
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void loadCentrosTreino()
         {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.CentroTreinos", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
 
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Nome");
+            dt.Columns.Add("Data Inauguração");
+            dt.Columns.Add("Localização");
+
+            while (reader.Read())
+            {
+                Centro_de_treino S = new Centro_de_treino();
+                S.Id_centro_treinos = reader["id_centro_treinos"].ToString();
+                S.Nome = reader["nome"].ToString();
+                S.Data_inauguracao = reader["data_inauguracao"].ToString().Substring(0, 10);
+                S.Localizacao = reader["localizacao"].ToString();
+
+                dt.Rows.Add(S.Id_centro_treinos, S.Nome, S.Data_inauguracao, S.Localizacao);
+
+            }
+
+            dataGridView1.DataSource = dt;
+            cn.Close();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void loadEstadios()
         {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Estadio", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
 
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Nome");
+            dt.Columns.Add("Data Inauguração");
+            dt.Columns.Add("Arquiteto");
+            dt.Columns.Add("Lotação");
+            dt.Columns.Add("Data Término");
+
+            while (reader.Read())
+            {
+                Estadio S = new Estadio();
+                S.Id_estadio = reader["id_estadio"].ToString();
+                S.Nome = reader["nome"].ToString();
+                S.Data_inauguracao = reader["data_inauguracao"].ToString().Substring(0, 10);
+                S.Arquiteto = reader["arquiteto"].ToString();
+                S.Lotacao = reader["lotacao"].ToString();
+                S.Localizacao = reader["localizacao"].ToString();
+
+                dt.Rows.Add(S.Id_estadio, S.Nome, S.Data_inauguracao, S.Arquiteto, S.Lotacao, S.Localizacao);
+
+            }
+
+            dataGridView1.DataSource = dt;
+            cn.Close();
         }
+
+
     }
 }

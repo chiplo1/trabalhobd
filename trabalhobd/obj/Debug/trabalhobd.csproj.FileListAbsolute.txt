@@ -8,3 +8,13 @@ C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\o
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\obj\Debug\trabalhobd.exe
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\obj\Debug\trabalhobd.pdb
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form1.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\bin\Debug\trabalhobd.exe.config
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\bin\Debug\trabalhobd.exe
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\bin\Debug\trabalhobd.pdb
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csprojAssemblyReference.cache
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form1.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Properties.Resources.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.GenerateResource.cache
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.CoreCompileInputs.cache
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.exe
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.pdb
