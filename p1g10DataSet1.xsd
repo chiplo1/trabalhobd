@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="p1g10DataSet1" targetNamespace="http://tempuri.org/p1g10DataSet1.xsd" xmlns:mstns="http://tempuri.org/p1g10DataSet1.xsd" xmlns="http://tempuri.org/p1g10DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="p1g10ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="p1g10ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.trabalhobd.Properties.Settings.GlobalReference.Default.p1g10ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="jogadoresTableAdapter" GeneratorDataComponentClassName="jogadoresTableAdapter" Name="jogadores" UserDataComponentName="jogadoresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="p1g10ConnectionString (Settings)" DbObjectName="p1g10.dbo.jogadores" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id_jogador, posicao, nome, data_termino, equipa, liga, data_nasc FROM dbo.jogadores</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id_jogador" DataSetColumn="id_jogador" />
+              <Mapping SourceColumn="posicao" DataSetColumn="posicao" />
+              <Mapping SourceColumn="nome" DataSetColumn="nome" />
+              <Mapping SourceColumn="data_termino" DataSetColumn="data_termino" />
+              <Mapping SourceColumn="equipa" DataSetColumn="equipa" />
+              <Mapping SourceColumn="liga" DataSetColumn="liga" />
+              <Mapping SourceColumn="data_nasc" DataSetColumn="data_nasc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="p1g10DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="p1g10DataSet1" msprop:Generator_UserDSName="p1g10DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="jogadores" msprop:Generator_TableClassName="jogadoresDataTable" msprop:Generator_TableVarName="tablejogadores" msprop:Generator_TablePropName="jogadores" msprop:Generator_RowDeletingName="jogadoresRowDeleting" msprop:Generator_RowChangingName="jogadoresRowChanging" msprop:Generator_RowEvHandlerName="jogadoresRowChangeEventHandler" msprop:Generator_RowDeletedName="jogadoresRowDeleted" msprop:Generator_UserTableName="jogadores" msprop:Generator_RowChangedName="jogadoresRowChanged" msprop:Generator_RowEvArgName="jogadoresRowChangeEvent" msprop:Generator_RowClassName="jogadoresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_jogador" msprop:Generator_ColumnVarNameInTable="columnid_jogador" msprop:Generator_ColumnPropNameInRow="id_jogador" msprop:Generator_ColumnPropNameInTable="id_jogadorColumn" msprop:Generator_UserColumnName="id_jogador" type="xs:int" />
+              <xs:element name="posicao" msprop:Generator_ColumnVarNameInTable="columnposicao" msprop:Generator_ColumnPropNameInRow="posicao" msprop:Generator_ColumnPropNameInTable="posicaoColumn" msprop:Generator_UserColumnName="posicao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nome" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="data_termino" msprop:Generator_ColumnVarNameInTable="columndata_termino" msprop:Generator_ColumnPropNameInRow="data_termino" msprop:Generator_ColumnPropNameInTable="data_terminoColumn" msprop:Generator_UserColumnName="data_termino" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="equipa" msprop:Generator_ColumnVarNameInTable="columnequipa" msprop:Generator_ColumnPropNameInRow="equipa" msprop:Generator_ColumnPropNameInTable="equipaColumn" msprop:Generator_UserColumnName="equipa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="liga" msprop:Generator_ColumnVarNameInTable="columnliga" msprop:Generator_ColumnPropNameInRow="liga" msprop:Generator_ColumnPropNameInTable="ligaColumn" msprop:Generator_UserColumnName="liga" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="data_nasc" msprop:Generator_ColumnVarNameInTable="columndata_nasc" msprop:Generator_ColumnPropNameInRow="data_nasc" msprop:Generator_ColumnPropNameInTable="data_nascColumn" msprop:Generator_UserColumnName="data_nasc" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:jogadores" />
+      <xs:field xpath="mstns:id_jogador" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
