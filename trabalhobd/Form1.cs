@@ -15,12 +15,14 @@ namespace trabalhobd
     {
 
         private SqlConnection cn;
-        private int currentselected;
+        private String currentselected; //jogador, socio, estadio, centrotreinos, staff, claque
 
         public Form1()
         {
             InitializeComponent();
         }
+
+    
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -86,6 +88,7 @@ namespace trabalhobd
 
         private void loadJogadores()
         {
+            currentselected = "jogador";
             if (!verifySGBDConnection())
                 return;
 
@@ -125,6 +128,7 @@ namespace trabalhobd
 
         private void loadSocios()
         {
+            currentselected = "socio";
             if (!verifySGBDConnection())
                 return;
 
@@ -158,6 +162,7 @@ namespace trabalhobd
 
         private void loadClaques()
         {
+            currentselected = "claque";
             if (!verifySGBDConnection())
                 return;
 
@@ -190,6 +195,7 @@ namespace trabalhobd
 
         private void loadStaff()
         {
+            currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Staff", cn);
@@ -198,7 +204,7 @@ namespace trabalhobd
             DataTable dt = new DataTable();
 
             dt.Columns.Add("ID");
-            dt.Columns.Add("Nome");
+            dt.Columns.Add("ID_Pessoa");
             dt.Columns.Add("Tipo");
             dt.Columns.Add("Data Término");
 
@@ -220,6 +226,7 @@ namespace trabalhobd
 
         private void loadCentrosTreino()
         {
+            currentselected = "centrotreinos";
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.CentroTreinos", cn);
@@ -250,6 +257,7 @@ namespace trabalhobd
 
         private void loadEstadios()
         {
+            currentselected = "estadio";
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Estadio", cn);
@@ -282,6 +290,12 @@ namespace trabalhobd
             cn.Close();
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form f2 = new Form2(currentselected,cn);
+            f2.TopMost = true;
+            f2.ShowDialog();
 
+        }
     }
 }
