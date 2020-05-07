@@ -16,13 +16,14 @@ namespace trabalhobd
 
         private SqlConnection cn;
         private String currentselected; //jogador, socio, estadio, centrotreinos, staff, claque
+        private DataGridViewSelectedRowCollection selection;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-    
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -84,7 +85,7 @@ namespace trabalhobd
             loadEstadios();
         }
 
-     
+
 
         private void loadJogadores()
         {
@@ -198,13 +199,13 @@ namespace trabalhobd
             currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Staff", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Staff", cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
 
             dt.Columns.Add("ID");
-            dt.Columns.Add("ID_Pessoa");
+            dt.Columns.Add("Nome");
             dt.Columns.Add("Tipo");
             dt.Columns.Add("Data Término");
 
@@ -212,11 +213,12 @@ namespace trabalhobd
             {
                 Staff S = new Staff();
                 S.Id_staff = reader["id_staff"].ToString();
-                S.Id_pessoa = reader["id_pessoa"].ToString();
+                S.Nome = reader["nome"].ToString();
                 S.Tipo = reader["tipo"].ToString();
                 S.Data_termino = reader["data_termino"].ToString().Substring(0, 10);
+                S.Data_nascimento = reader["data_nasc"].ToString().Substring(0, 10);
 
-                dt.Rows.Add(S.Id_staff, S.Id_pessoa, S.Tipo, S.Data_termino);
+                dt.Rows.Add(S.Id_staff, S.Nome, S.Tipo, S.Data_termino);
 
             }
 
@@ -328,7 +330,7 @@ namespace trabalhobd
                 default:
                     break;
             }
-            
+
 
         }
 
@@ -364,5 +366,91 @@ namespace trabalhobd
                     break;
             }
         }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            dataGridView1.Width = this.Width - 200;
+            dataGridView1.Height = this.Height - 175;
+            button7.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button8.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button9.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button13.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button13.Top = this.Height - 110;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+
+            if (selection.Count <= 0)
+            {
+                MessageBox.Show("É necessario selecionar pelo menos uma linha a remover!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Lista com todos os ids a remover na respetiva tabela
+            String toRemove = "(";
+            for (int i = 0; i < selection.Count-1; i++)
+            {
+                toRemove += dataGridView1.SelectedRows[i].Cells[0].Value.ToString() + ",";
+                //MessageBox.Show(dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+            }
+            toRemove+= dataGridView1.SelectedRows[selection.Count-1].Cells[0].Value.ToString();
+            toRemove += ")";
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+
+            switch (currentselected)
+            {
+                case "jogador":
+                    cmd.CommandText = "delete from clube.jogador where id_jogador in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadJogadores();
+                    break;
+                case "staff":
+                    cmd.CommandText = "delete from clube.staff where id_staff in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadStaff();
+                    break;
+                case "socio":
+                    cmd.CommandText = "delete from clube.socio where id_socio in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadSocios();
+                    break;
+                case "estadio":
+                    cmd.CommandText = "delete from clube.estadio where id_estadio in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadEstadios();
+                    break;
+                case "centrotreinos":
+                    cmd.CommandText = "delete from clube.centrotreinos where id_centro_treinos in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadCentrosTreino();
+                    break;
+                case "claque":
+                    cmd.CommandText = "delete from clube.claque where id_claque in " + toRemove;
+                    cmd.ExecuteNonQuery();
+                    loadClaques();
+                    break;
+                default:
+                    break;
+            }
+
+                cn.Close();
+
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            selection = dataGridView1.SelectedRows;
+        }
     }
+
 }

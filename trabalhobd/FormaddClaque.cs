@@ -44,8 +44,15 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd1 = new SqlCommand("Select count(*) from clube.claque where nome like '%" + textBox1.Text + "%'", cn);
+            int count = (int) cmd1.ExecuteScalar();
+            if (count > 0)
+            {
+                MessageBox.Show("Já existe uma claque com esse nome!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "INSERT INTO Clube.Claque ([nome], [localizacao_sede], [bancada]) VALUES (@nome,@localizacao_sede,@bancada);";
             cmd.Parameters.Clear();
@@ -68,6 +75,11 @@ namespace trabalhobd
             }
 
             this.Close();
+        }
+
+        private void FormaddClaque_Load(object sender, EventArgs e)
+        {
+
         }
     }
     

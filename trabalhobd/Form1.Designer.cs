@@ -110,6 +110,7 @@
             this.button8.TabIndex = 6;
             this.button8.Text = "Editar";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -119,6 +120,7 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "Remover";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // dataGridView1
             // 
@@ -130,6 +132,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(763, 441);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // p1g10DataSet
             // 
@@ -217,8 +220,10 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MinimumSize = new System.Drawing.Size(953, 612);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSetBindingSource)).EndInit();

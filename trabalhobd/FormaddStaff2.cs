@@ -82,9 +82,9 @@ namespace trabalhobd
             String d = dateTimePicker2.Text.Substring(6, 4) + dateTimePicker2.Text.Substring(3, 2) + dateTimePicker2.Text.Substring(0, 2);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "INSERT INTO Clube.Staff ([id_pessoa], [tipo], [data_termino]) VALUES (@id_pessoa,@tipo,@data_termino);";
+            cmd.CommandText = "INSERT INTO Clube.Staff ([nome], [tipo], [data_termino]) VALUES (@id_pessoa,@tipo,@data_termino);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id_pessoa", S.Id_pessoa);
+            cmd.Parameters.AddWithValue("@nome", S.Nome);
             cmd.Parameters.AddWithValue("@tipo", textBox4.Text);
             cmd.Parameters.AddWithValue("@data_termino", d);
             cmd.Connection = cn;
@@ -118,7 +118,7 @@ namespace trabalhobd
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                S.Id_pessoa = reader["id_pessoa"].ToString();
+                S.Nome = reader["nome"].ToString();
             }
 
             cn.Close();

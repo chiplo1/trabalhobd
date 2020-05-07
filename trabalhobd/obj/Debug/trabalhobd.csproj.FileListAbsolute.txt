@@ -28,3 +28,23 @@ C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador2.resources
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio2.resources
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio1.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\bin\Debug\trabalhobd.exe.config
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\bin\Debug\trabalhobd.exe
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\bin\Debug\trabalhobd.pdb
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csprojAssemblyReference.cache
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form1.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddCentroTreinos.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddClaque.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddEstadio.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador1.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador2.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddNIF.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio1.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio2.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddStaff1.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddStaff2.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Properties.Resources.resources
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.GenerateResource.cache
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.CoreCompileInputs.cache
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.exe
+C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.pdb

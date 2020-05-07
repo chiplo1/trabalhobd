@@ -12,9 +12,10 @@ namespace trabalhobd
 	public class Staff
 	{
 		private String _id_staff;
-		private String _id_pessoa;
+		private String _nome;
 		private String _tipo;
 		private String _data_termino;
+		private String _data_nascimento;
 
 		public String Id_staff
 		{
@@ -30,18 +31,10 @@ namespace trabalhobd
 			}
 		}
 
-		public String Id_pessoa
+		public String Nome
 		{
-			get { return _id_pessoa; }
-			set
-			{
-				if (value == null | String.IsNullOrEmpty(value))
-				{
-					throw new Exception("Pessoa ID field can’t be empty");
-					return;
-				}
-				_id_pessoa = value;
-			}
+			get { return _nome; }
+			set { _nome = value; }
 		}
 
 		public String Tipo
@@ -56,21 +49,28 @@ namespace trabalhobd
 			set { _data_termino = value; }
 		}
 
+		public String Data_nascimento
+		{
+			get { return _data_nascimento; }
+			set { _data_nascimento = value; }
+		}
+
 		public override String ToString()
 		{
-			return Id_staff + "   " + Id_pessoa + "   " + Tipo + "   " + Data_termino;
+			return Id_staff + "   " + Nome + "   " + Tipo + "   " + Data_termino;
 		}
 
 		public Staff() : base()
 		{
 		}
 
-		public Staff(String id_staff, String id_pessoa, String tipo, String data_termino) : base()
+		public Staff(String id_staff, String nome, String tipo, String data_termino, String data_nascimento) : base()
 		{
 			this.Id_staff = id_staff;
-			this.Id_pessoa = id_pessoa;
+			this.Nome = nome;
 			this.Tipo = tipo;
 			this.Data_termino = data_termino;
+			this.Data_nascimento = data_nascimento;
 		}
 
 	}

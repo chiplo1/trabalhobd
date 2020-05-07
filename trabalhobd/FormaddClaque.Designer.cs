@@ -46,7 +46,6 @@
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 28;
             this.label5.Text = "Bancada:";
-           
             // 
             // textBox3
             // 
@@ -54,7 +53,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(85, 20);
             this.textBox3.TabIndex = 27;
-           
             // 
             // label4
             // 
@@ -64,7 +62,6 @@
             this.label4.Size = new System.Drawing.Size(110, 13);
             this.label4.TabIndex = 26;
             this.label4.Text = "Localização da Sede:";
-            
             // 
             // textBox2
             // 
@@ -72,7 +69,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(355, 20);
             this.textBox2.TabIndex = 25;
-           
             // 
             // button1
             // 
@@ -124,6 +120,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormaddClaque";
             this.Text = "FormaddClaque";
+            this.Load += new System.EventHandler(this.FormaddClaque_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
