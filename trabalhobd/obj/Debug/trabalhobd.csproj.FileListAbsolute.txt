@@ -18,6 +18,13 @@ C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.Generat
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.CoreCompileInputs.cache
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.exe
 C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.pdb
-C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form2.resources
-C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form3.resources
-C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Form4.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddCentroTreinos.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddNIF.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddStaff1.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddStaff2.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddEstadio.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddClaque.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador1.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddJogador2.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio2.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.FormaddSocio1.resources

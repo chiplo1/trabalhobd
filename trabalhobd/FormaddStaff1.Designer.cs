@@ -1,6 +1,6 @@
 ﻿namespace trabalhobd
 {
-    partial class Form3
+    partial class FormaddStaff1
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -44,21 +44,13 @@
             this.label1.Size = new System.Drawing.Size(157, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Insira um novo membro do staff:";
-           
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(35, 135);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(293, 20);
+            this.textBox1.Size = new System.Drawing.Size(204, 20);
             this.textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(35, 215);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(293, 20);
-            this.textBox2.TabIndex = 2;
             // 
             // label2
             // 
@@ -74,10 +66,11 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(32, 199);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 13);
+            this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Data Término (yymmdd)";
+            this.label3.Text = "Data Término:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 
@@ -89,18 +82,26 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form3
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(35, 224);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(113, 20);
+            this.dateTimePicker1.TabIndex = 6;
+            // 
+            // FormaddStaff1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(385, 406);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "Form3";
+            this.Name = "FormaddStaff1";
             this.Text = "Form3";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -111,9 +112,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

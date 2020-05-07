@@ -10,6 +10,7 @@ namespace trabalhobd
     {
 
         private String _socioID;
+        private String _pessoaID;
         private String _nome;
         private String _dataInsc;
         private String _dataNasc; 
@@ -21,18 +22,17 @@ namespace trabalhobd
             set { _socioID = value; }
         }
 
+        public String PessoaID
+        {
+            get { return _pessoaID; }
+            set { _pessoaID = value; }
+        }
+
         public String Nome
         {
             get { return _nome; }
             set
-            {
-                if (value == null | String.IsNullOrEmpty(value))
-                {
-                    throw new Exception("O nome da claque não pode estar vazio.");
-                    return;
-                }
-                _nome = value;
-            }
+            {_nome = value; } //removi obrigatoriedade
         }
 
         public String DataInsc

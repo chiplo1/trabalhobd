@@ -292,10 +292,77 @@ namespace trabalhobd
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form f2 = new Form2(currentselected,cn);
-            f2.TopMost = true;
-            f2.ShowDialog();
+            //jogador, socio, estadio, centrotreinos, staff, claque
+            switch (currentselected)
+            {
+                case "jogador":
+                    Form f = new FormaddNIF(currentselected, cn);
+                    f.TopMost = true;
+                    f.ShowDialog();
+                    break;
+                case "staff":
+                    Form f2 = new FormaddNIF(currentselected, cn);
+                    f2.TopMost = true;
+                    f2.ShowDialog();
+                    break;
+                case "socio":
+                    Form f3 = new FormaddNIF(currentselected, cn);
+                    f3.TopMost = true;
+                    f3.ShowDialog();
+                    break;
+                case "estadio":
+                    Form f4 = new FormaddEstadio(cn);
+                    f4.TopMost = true;
+                    f4.ShowDialog();
+                    break;
+                case "centrotreinos":
+                    Form f5 = new FormaddCentroTreinos(cn);
+                    f5.TopMost = true;
+                    f5.ShowDialog();
+                    break;
+                case "claque":
+                    Form f6 = new FormaddClaque(cn);
+                    f6.TopMost = true;
+                    f6.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
+            
 
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            switch (currentselected)
+            {
+                case "jogador":
+                    label2.Text = "Lista de jogadores do clube:";
+                    loadJogadores();
+                    break;
+                case "staff":
+                    label2.Text = "Lista do Staff do clube:";
+                    loadStaff();
+                    break;
+                case "socio":
+                    label2.Text = "Lista de sócios do clube:";
+                    loadSocios();
+                    break;
+                case "estadio":
+                    label2.Text = "Lista dos Estádios:";
+                    loadEstadios();
+                    break;
+                case "centrotreinos":
+                    label2.Text = "Lista dos Centros de Treino do clube:";
+                    loadCentrosTreino();
+                    break;
+                case "claque":
+                    label2.Text = "Lista de claques do clube:";
+                    loadClaques();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

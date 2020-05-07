@@ -49,11 +49,53 @@
   <ItemGroup>
     <Compile Include="Centro_de_treino.cs" />
     <Compile Include="Claque.cs" />
-    <Compile Include="Form4.cs">
+    <Compile Include="FormaddCentroTreinos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="FormaddCentroTreinos.Designer.cs">
+      <DependentUpon>FormaddCentroTreinos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddClaque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddClaque.Designer.cs">
+      <DependentUpon>FormaddClaque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddEstadio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddEstadio.Designer.cs">
+      <DependentUpon>FormaddEstadio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddJogador1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddJogador1.Designer.cs">
+      <DependentUpon>FormaddJogador1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddJogador2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddJogador2.Designer.cs">
+      <DependentUpon>FormaddJogador2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddSocio1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddSocio1.Designer.cs">
+      <DependentUpon>FormaddSocio1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddSocio2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddSocio2.Designer.cs">
+      <DependentUpon>FormaddSocio2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaddStaff2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaddStaff2.Designer.cs">
+      <DependentUpon>FormaddStaff2.cs</DependentUpon>
     </Compile>
     <Compile Include="Pessoa.cs" />
     <Compile Include="Estadio.cs" />
@@ -63,17 +105,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormaddNIF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormaddNIF.Designer.cs">
+      <DependentUpon>FormaddNIF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="FormaddStaff1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="FormaddStaff1.Designer.cs">
+      <DependentUpon>FormaddStaff1.cs</DependentUpon>
     </Compile>
     <Compile Include="Jogador.cs" />
     <Compile Include="p1g10DataSet.Designer.cs">
@@ -93,14 +135,35 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormaddCentroTreinos.resx">
+      <DependentUpon>FormaddCentroTreinos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="FormaddClaque.resx">
+      <DependentUpon>FormaddClaque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="FormaddEstadio.resx">
+      <DependentUpon>FormaddEstadio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddJogador1.resx">
+      <DependentUpon>FormaddJogador1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddJogador2.resx">
+      <DependentUpon>FormaddJogador2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddNIF.resx">
+      <DependentUpon>FormaddNIF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddSocio1.resx">
+      <DependentUpon>FormaddSocio1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddSocio2.resx">
+      <DependentUpon>FormaddSocio2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddStaff1.resx">
+      <DependentUpon>FormaddStaff1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaddStaff2.resx">
+      <DependentUpon>FormaddStaff2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -12,18 +12,17 @@ using System.Windows.Forms;
 
 namespace trabalhobd
 {
-    public partial class Form4 : Form
+    public partial class FormaddStaff1 : Form
     {
 
         private SqlConnection cn;
         private int nif;
 
-        public Form4(int nif, SqlConnection cn)
+        public FormaddStaff1(int nif, SqlConnection cn)
         {
             InitializeComponent();
             this.nif = nif;
             this.cn = cn;
-
 
         }
 
@@ -43,49 +42,39 @@ namespace trabalhobd
             return cn.State == ConnectionState.Open;
         }
 
-        
-
-        private void AddPessoa()
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (!verifySGBDConnection())
+            if(!verifySGBDConnection())
                 return;
-
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "INSERT INTO Clube.Pessoa ([nif], [fname], [lname], [data_nasc]) VALUES (@nif,@fname,@lname,@data_nasc);";
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nif", nif);
-            cmd.Parameters.AddWithValue("@fname", textBox1.Text);
-            cmd.Parameters.AddWithValue("@lname", textBox2.Text);
-            cmd.Parameters.AddWithValue("@data_nasc", textBox3.Text);
-            cmd.Connection = cn;
-
-            try
+            Staff S = new Staff();
+            String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
+            SqlCommand cmd = new SqlCommand(commandText, cn);
+            cmd.Parameters.AddWithValue("@getnif", nif);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
             {
-                cmd.ExecuteNonQuery();
+                S.Id_pessoa = reader["id_pessoa"].ToString();
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to update contact in database. \n ERROR MESSAGE: \n" + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
+
+            cn.Close();
+            AddStaff(S);
 
         }
+
         private void AddStaff(Staff S)
         {
             if (!verifySGBDConnection())
                 return;
 
             SqlCommand cmd = new SqlCommand();
+            String d = dateTimePicker1.Text.Substring(6,4) + dateTimePicker1.Text.Substring(3, 2) + dateTimePicker1.Text.Substring(0, 2);
+
 
             cmd.CommandText = "INSERT INTO Clube.Staff ([id_pessoa], [tipo], [data_termino]) VALUES (@id_pessoa,@tipo,@data_termino);";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id_pessoa", S.Id_pessoa);
-            cmd.Parameters.AddWithValue("@tipo", textBox4.Text);
-            cmd.Parameters.AddWithValue("@data_termino", textBox5.Text);
+            cmd.Parameters.AddWithValue("@tipo", textBox1.Text);
+            cmd.Parameters.AddWithValue("@data_termino",d);
             cmd.Connection = cn;
 
             try
@@ -102,26 +91,13 @@ namespace trabalhobd
             }
 
             this.Close();
+            
+
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-            
-            AddPessoa();
-            if (!verifySGBDConnection())
-                return;
-            Staff S = new Staff();
-            String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
-            SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", nif);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                S.Id_pessoa = reader["id_pessoa"].ToString();
-            }
 
-            cn.Close();
-            AddStaff(S);
         }
     }
 }

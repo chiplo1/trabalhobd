@@ -9,6 +9,7 @@ namespace trabalhobd
     class Jogador
     {
         private String _jogadorID;
+        private String _pessoaID;  //acrescentei aqui
         private String _pos;
         private String _nome;
         private String _dataterm;
@@ -20,6 +21,12 @@ namespace trabalhobd
         {
             get { return _jogadorID; }
             set { _jogadorID = value; }
+        }
+
+        public String PessoaID
+        {
+            get { return _pessoaID; }
+            set { _pessoaID = value; }
         }
 
         public String Pos

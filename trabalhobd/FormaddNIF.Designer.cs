@@ -1,6 +1,6 @@
 ﻿namespace trabalhobd
 {
-    partial class Form2
+    partial class FormaddNIF
     {
         /// <summary>
         /// Required designer variable.

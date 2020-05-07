@@ -12,19 +12,13 @@ using System.Windows.Forms;
 
 namespace trabalhobd
 {
-    public partial class Form3 : Form
+    public partial class FormaddClaque : Form
     {
-
         private SqlConnection cn;
-        private int nif;
-
-        public Form3(int nif, SqlConnection cn)
+        public FormaddClaque(SqlConnection cn)
         {
-            InitializeComponent();
-            this.nif = nif;
             this.cn = cn;
-            
-
+            InitializeComponent();
         }
 
         private SqlConnection getSGBDConnection()
@@ -43,37 +37,21 @@ namespace trabalhobd
             return cn.State == ConnectionState.Open;
         }
 
+     
+
         private void button1_Click(object sender, EventArgs e)
-        {
-            if(!verifySGBDConnection())
-                return;
-            Staff S = new Staff();
-            String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
-            SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", nif);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                S.Id_pessoa = reader["id_pessoa"].ToString();
-            }
-
-            cn.Close();
-            AddStaff(S);
-
-        }
-
-        private void AddStaff(Staff S)
         {
             if (!verifySGBDConnection())
                 return;
 
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "INSERT INTO Clube.Staff ([id_pessoa], [tipo], [data_termino]) VALUES (@id_pessoa,@tipo,@data_termino);";
+
+            cmd.CommandText = "INSERT INTO Clube.Claque ([nome], [localizacao_sede], [bancada]) VALUES (@nome,@localizacao_sede,@bancada);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id_pessoa", S.Id_pessoa);
-            cmd.Parameters.AddWithValue("@tipo", textBox1.Text);
-            cmd.Parameters.AddWithValue("@data_termino",textBox2.Text);
+            cmd.Parameters.AddWithValue("@nome", textBox1.Text);
+            cmd.Parameters.AddWithValue("@localizacao_sede", textBox2.Text);
+            cmd.Parameters.AddWithValue("@bancada", textBox3.Text);
             cmd.Connection = cn;
 
             try
@@ -90,8 +68,7 @@ namespace trabalhobd
             }
 
             this.Close();
-            
-
         }
     }
+    
 }
