@@ -380,6 +380,37 @@ namespace trabalhobd
 
         private void button8_Click(object sender, EventArgs e)
         {
+            if (!verifySGBDConnection())
+                return;
+
+            if (selection.Count == 0)
+            {
+                MessageBox.Show("Para editar tem que ser selecionar uma linha.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (selection.Count > 1)
+            {
+                MessageBox.Show("Para editar só pode selecionar uma linha.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            switch (currentselected)
+            {
+                case "jogador":
+                    break;
+                case "staff":
+                    break;
+                case "socio":
+                    break;
+                case "estadio":
+                    break;
+                case "centrotreinos":
+                    break;
+                case "claque":
+                    break;
+                default:
+                    break;
+            }
 
         }
 
@@ -395,13 +426,13 @@ namespace trabalhobd
             }
 
             // Lista com todos os ids a remover na respetiva tabela
-            String toRemove = "(";
+            String toRemove = "( ";
             for (int i = selection.Count - 1; i > 0; i--)
             {
                 toRemove = toRemove + dataGridView1.SelectedRows[i].Cells[0].Value.ToString() + ",";
             }
 
-            toRemove = toRemove + dataGridView1.SelectedRows[0].Cells[0].Value.ToString() + ")";
+            toRemove = toRemove + dataGridView1.SelectedRows[0].Cells[0].Value.ToString() + " )";
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
