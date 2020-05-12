@@ -396,16 +396,22 @@ namespace trabalhobd
 
             // Lista com todos os ids a remover na respetiva tabela
             String toRemove = "(";
-            for (int i = 0; i < selection.Count-1; i++)
+            for (int i = selection.Count - 1; i > 0; i--)
             {
-                toRemove += dataGridView1.SelectedRows[i].Cells[0].Value.ToString() + ",";
-                //MessageBox.Show(dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+                toRemove = toRemove + dataGridView1.SelectedRows[i].Cells[0].Value.ToString() + ",";
             }
-            toRemove+= dataGridView1.SelectedRows[selection.Count-1].Cells[0].Value.ToString();
-            toRemove += ")";
+
+            toRemove = toRemove + dataGridView1.SelectedRows[0].Cells[0].Value.ToString() + ")";
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
+
+            DialogResult dialogResult = MessageBox.Show("Tem a certeza que quer apagar da tabela " + currentselected  + " os elementos com os ids " + toRemove , "Apagar elementos permanentemente", MessageBoxButtons.YesNo);
+            
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
 
             switch (currentselected)
             {
