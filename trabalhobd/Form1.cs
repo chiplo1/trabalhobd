@@ -28,7 +28,7 @@ namespace trabalhobd
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'p1g10DataSet1.jogadores' table. You can move, or remove it, as needed.
-            this.jogadoresTableAdapter.Fill(this.p1g10DataSet1.jogadores);
+            //this.jogadoresTableAdapter.Fill(this.p1g10DataSet1.jogadores);
             cn = getSGBDConnection();
             loadJogadores();
         }
@@ -52,48 +52,84 @@ namespace trabalhobd
         private void button4_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista de jogadores do clube:";
+            FiltrosJogadores.Visible = true;
+            FiltrosSocios.Visible = false;
+            FiltrosClaques.Visible = false;
+            FiltrosStaff.Visible = false;
+            FiltrosCentroTreinos.Visible = false;
+            FiltrosEstadios.Visible = false;
             loadJogadores();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista de sócios do clube:";
+            FiltrosJogadores.Visible = false;
+            FiltrosSocios.Visible = true;
+            FiltrosClaques.Visible = false;
+            FiltrosStaff.Visible = false;
+            FiltrosCentroTreinos.Visible = false;
+            FiltrosEstadios.Visible = false;
             loadSocios();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista de claques do clube:";
+            FiltrosJogadores.Visible = false;
+            FiltrosSocios.Visible = false;
+            FiltrosClaques.Visible = true;
+            FiltrosStaff.Visible = false;
+            FiltrosCentroTreinos.Visible = false;
+            FiltrosEstadios.Visible = false;
             loadClaques();
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista do Staff do clube:";
+            FiltrosJogadores.Visible = false;
+            FiltrosSocios.Visible = false;
+            FiltrosClaques.Visible = false;
+            FiltrosStaff.Visible = true;
+            FiltrosCentroTreinos.Visible = false;
+            FiltrosEstadios.Visible = false;
             loadStaff();
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista dos Centros de Treino do clube:";
+            FiltrosJogadores.Visible = false;
+            FiltrosSocios.Visible = false;
+            FiltrosClaques.Visible = false;
+            FiltrosStaff.Visible = false;
+            FiltrosCentroTreinos.Visible = true;
+            FiltrosEstadios.Visible = false;
             loadCentrosTreino();
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             label2.Text = "Lista dos Estádios:";
+            FiltrosJogadores.Visible = false;
+            FiltrosSocios.Visible = false;
+            FiltrosClaques.Visible = false;
+            FiltrosStaff.Visible = false;
+            FiltrosCentroTreinos.Visible = false;
+            FiltrosEstadios.Visible = true;
             loadEstadios();
         }
 
 
 
-        private void loadJogadores()
+        private void loadJogadores(string filtro = "")
         {
             currentselected = "jogador";
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("select * from jogadores", cn);
+            SqlCommand cmd = new SqlCommand("select * from jogadores" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -127,13 +163,13 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadSocios()
+        private void loadSocios(string filtro = "")
         {
             currentselected = "socio";
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM socios", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM socios" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -161,13 +197,13 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadClaques()
+        private void loadClaques(string filtro = "")
         {
             currentselected = "claque";
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM clube.claque", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clube.claque" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -194,12 +230,12 @@ namespace trabalhobd
 
         }
 
-        private void loadStaff()
+        private void loadStaff(string filtro = "")
         {
             currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Staff", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Staff" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -226,12 +262,12 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadCentrosTreino()
+        private void loadCentrosTreino(string filtro = "")
         {
             currentselected = "centrotreinos";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.CentroTreinos", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.CentroTreinos" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -257,12 +293,12 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadEstadios()
+        private void loadEstadios(string filtro = "")
         {
             currentselected = "estadio";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Estadio", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Estadio" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -272,7 +308,7 @@ namespace trabalhobd
             dt.Columns.Add("Data Inauguração");
             dt.Columns.Add("Arquiteto");
             dt.Columns.Add("Lotação");
-            dt.Columns.Add("Data Término");
+            dt.Columns.Add("Localização");
 
             while (reader.Read())
             {
@@ -369,16 +405,20 @@ namespace trabalhobd
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            dataGridView1.Width = this.Width - 200;
+            dataGridView1.Width = this.Width - 300;
             dataGridView1.Height = this.Height - 175;
-            button7.Left = dataGridView1.Width + dataGridView1.Left + 25;
-            button8.Left = dataGridView1.Width + dataGridView1.Left + 25;
-            button9.Left = dataGridView1.Width + dataGridView1.Left + 25;
             button13.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button14.Left = dataGridView1.Width + dataGridView1.Left + 25;
             button13.Top = this.Height - 110;
+            FiltrosJogadores.Left = dataGridView1.Width + dataGridView1.Left + 25; 
+            FiltrosSocios.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            FiltrosClaques.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            FiltrosStaff.Left = dataGridView1.Width + dataGridView1.Left + 25; 
+            FiltrosCentroTreinos.Left = dataGridView1.Width + dataGridView1.Left + 25; 
+            FiltrosEstadios.Left = dataGridView1.Width + dataGridView1.Left + 25; 
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e) // TO DO - BOTÂO EDITAR
         {
             if (!verifySGBDConnection())
                 return;
@@ -484,10 +524,39 @@ namespace trabalhobd
 
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void button14_Click(object sender, EventArgs e) // TO DO - BOTÂO FILTRAR
         {
-            selection = dataGridView1.SelectedRows;
+            if (!verifySGBDConnection())
+                return;
+
+            string filtro = " where 1=1";
+
+            switch (currentselected)
+            {
+                case "jogador":
+                    loadJogadores(filtro);
+                    break;
+                case "staff":
+                    loadStaff(filtro);
+                    break;
+                case "socio":
+                    loadSocios(filtro);
+                    break;
+                case "estadio":
+                    loadEstadios(filtro);
+                    break;
+                case "centrotreinos":
+                    loadCentrosTreino(filtro);
+                    break;
+                case "claque":
+                    loadClaques(filtro);
+                    break;
+                default:
+                    break;
+            }
         }
+
+
     }
 
 }
