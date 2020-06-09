@@ -423,6 +423,8 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
 
+            selection = dataGridView1.SelectedRows;
+
             if (selection.Count == 0)
             {
                 MessageBox.Show("Para editar tem que ser selecionar uma linha.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -458,6 +460,8 @@ namespace trabalhobd
         {
             if (!verifySGBDConnection())
                 return;
+
+            selection = dataGridView1.SelectedRows;
 
             if (selection.Count <= 0)
             {
