@@ -139,7 +139,7 @@ namespace trabalhobd
 
             if (comboBox1.Items.Count < 1)
             {
-                SqlCommand cmd1 = new SqlCommand("select distinct posicao from jogadores", cn);
+                SqlCommand cmd1 = new SqlCommand("select distinct posicao from jogadores where posicao is not null ", cn);
                 cmd1.ExecuteNonQuery();
                 DataTable dt1 = new DataTable();
                 SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
@@ -153,7 +153,7 @@ namespace trabalhobd
 
             if (comboBox2.Items.Count < 1)
             {
-                SqlCommand cmd2 = new SqlCommand("select distinct equipa from jogadores", cn);
+                SqlCommand cmd2 = new SqlCommand("select distinct equipa from jogadores where equipa is not null ", cn);
                 cmd2.ExecuteNonQuery();
                 DataTable dt2 = new DataTable();
                 SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
@@ -167,7 +167,7 @@ namespace trabalhobd
 
             if (comboBox3.Items.Count < 1)
             {
-                SqlCommand cmd3 = new SqlCommand("select distinct liga from jogadores", cn);
+                SqlCommand cmd3 = new SqlCommand("select distinct liga from jogadores where liga is not null ", cn);
                 cmd3.ExecuteNonQuery();
                 DataTable dt3 = new DataTable();
                 SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
@@ -235,7 +235,31 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM socios" + filtro, cn);
+            if (comboBox6.Items.Count < 1)
+            {
+                SqlCommand cmd1 = new SqlCommand("select distinct claque from socios where claque is not null ", cn);
+                cmd1.ExecuteNonQuery();
+                DataTable dt1 = new DataTable();
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                da1.Fill(dt1);
+                comboBox6.Items.Clear();
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    comboBox6.Items.Add(dr1["claque"].ToString());
+                }
+            }
+
+            if (!String.IsNullOrEmpty(textBox2.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (comboBox6.SelectedIndex > -1)
+                filtro += " and claque = '" + comboBox6.SelectedItem + "'";
+            filtro += " and data_inscricao >= '" + dateTimePicker7.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_inscricao <= '" + dateTimePicker6.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_nasc >= '" + dateTimePicker5.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_nasc <= '" + dateTimePicker4.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            SqlCommand cmd = new SqlCommand("select * from socios" + filtro, cn);
+            if (!String.IsNullOrEmpty(textBox2.Text))
+                cmd.Parameters.AddWithValue("nome", textBox2.Text);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -271,7 +295,33 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM clube.claque" + filtro, cn);
+            if (comboBox8.Items.Count < 1)
+            {
+                SqlCommand cmd1 = new SqlCommand("select distinct bancada from clube.claque where bancada is not null ", cn);
+                cmd1.ExecuteNonQuery();
+                DataTable dt1 = new DataTable();
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                da1.Fill(dt1);
+                comboBox8.Items.Clear();
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    comboBox8.Items.Add(dr1["bancada"].ToString());
+                }
+            }
+
+            if (!String.IsNullOrEmpty(textBox3.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (!String.IsNullOrEmpty(textBox9.Text))
+                filtro += " and localizacao_sede like '%'+@loc+'%'";
+            if (comboBox8.SelectedIndex > -1)
+                filtro += " and bancada = '" + comboBox8.SelectedItem + "'";
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clube.claque " + filtro, cn);
+            if (!String.IsNullOrEmpty(textBox3.Text))
+                cmd.Parameters.AddWithValue("nome", textBox3.Text);
+            if (!String.IsNullOrEmpty(textBox9.Text))
+                cmd.Parameters.AddWithValue("loc", textBox9.Text);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -305,7 +355,29 @@ namespace trabalhobd
             currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM staff" + filtro, cn);
+
+            if (comboBox12.Items.Count < 1)
+            {
+                SqlCommand cmd1 = new SqlCommand("select distinct tipo from staff where tipo not like '' ", cn);
+                cmd1.ExecuteNonQuery();
+                DataTable dt1 = new DataTable();
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                da1.Fill(dt1);
+                comboBox12.Items.Clear();
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    comboBox12.Items.Add(dr1["tipo"].ToString());
+                }
+            }
+
+            if (!String.IsNullOrEmpty(textBox4.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (comboBox12.SelectedIndex > -1)
+                filtro += " and tipo = '" + comboBox12.SelectedItem + "'";
+            filtro += " and data_termino <= '" + dateTimePicker8.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            SqlCommand cmd = new SqlCommand("select * from staff" + filtro, cn);
+            if (!String.IsNullOrEmpty(textBox4.Text))
+                cmd.Parameters.AddWithValue("nome", textBox4.Text);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -339,7 +411,22 @@ namespace trabalhobd
             currentselected = "centrotreinos";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.CentroTreinos" + filtro, cn);
+
+            if (!String.IsNullOrEmpty(textBox5.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (!String.IsNullOrEmpty(textBox7.Text))
+                filtro += " and localizacao like '%'+@loc+'%'";
+
+            filtro += " and data_inauguracao >= '" + dateTimePicker10.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_inauguracao <= '" + dateTimePicker9.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+
+            SqlCommand cmd = new SqlCommand("select * from Clube.CentroTreinos" + filtro, cn);
+
+            if (!String.IsNullOrEmpty(textBox5.Text))
+                cmd.Parameters.AddWithValue("nome", textBox5.Text);
+            if (!String.IsNullOrEmpty(textBox7.Text))
+                cmd.Parameters.AddWithValue("loc", textBox7.Text);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -372,7 +459,26 @@ namespace trabalhobd
             currentselected = "estadio";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Clube.Estadio" + filtro, cn);
+
+            if (!String.IsNullOrEmpty(textBox6.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (!String.IsNullOrEmpty(textBox8.Text))
+                filtro += " and localizacao like '%'+@loc+'%'";
+            if (!String.IsNullOrEmpty(textBox10.Text))
+                filtro += " and lotacao > @lotacao";
+
+            filtro += " and data_inauguracao >= '" + dateTimePicker12.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_inauguracao <= '" + dateTimePicker11.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+
+            SqlCommand cmd = new SqlCommand("select * from Clube.Estadio" + filtro, cn);
+
+            if (!String.IsNullOrEmpty(textBox6.Text))
+                cmd.Parameters.AddWithValue("nome", textBox6.Text);
+            if (!String.IsNullOrEmpty(textBox8.Text))
+                cmd.Parameters.AddWithValue("loc", textBox8.Text);
+            if (!String.IsNullOrEmpty(textBox10.Text))
+                cmd.Parameters.AddWithValue("lotacao", textBox10.Text);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -481,15 +587,16 @@ namespace trabalhobd
         {
             dataGridView1.Width = this.Width - 300;
             dataGridView1.Height = this.Height - 175;
-            button13.Left = dataGridView1.Width + dataGridView1.Left + 25;
-            button14.Left = dataGridView1.Width + dataGridView1.Left + 25;
+            button13.Left = dataGridView1.Width + dataGridView1.Left + 125;
+            button14.Left = dataGridView1.Width + dataGridView1.Left + 125;
             button13.Top = this.Height - 110;
-            FiltrosJogadores.Left = dataGridView1.Width + dataGridView1.Left + 25; 
-            FiltrosSocios.Left = dataGridView1.Width + dataGridView1.Left + 25;
-            FiltrosClaques.Left = dataGridView1.Width + dataGridView1.Left + 25;
-            FiltrosStaff.Left = dataGridView1.Width + dataGridView1.Left + 25; 
-            FiltrosCentroTreinos.Left = dataGridView1.Width + dataGridView1.Left + 25; 
-            FiltrosEstadios.Left = dataGridView1.Width + dataGridView1.Left + 25; 
+            button15.Left = dataGridView1.Width + dataGridView1.Left + 15;
+            FiltrosJogadores.Left = dataGridView1.Width + dataGridView1.Left + 20; 
+            FiltrosSocios.Left = dataGridView1.Width + dataGridView1.Left + 20;
+            FiltrosClaques.Left = dataGridView1.Width + dataGridView1.Left + 20;
+            FiltrosStaff.Left = dataGridView1.Width + dataGridView1.Left + 20; 
+            FiltrosCentroTreinos.Left = dataGridView1.Width + dataGridView1.Left + 20; 
+            FiltrosEstadios.Left = dataGridView1.Width + dataGridView1.Left + 20; 
         }
 
         private void button8_Click(object sender, EventArgs e) // TO DO - BOTÂO EDITAR

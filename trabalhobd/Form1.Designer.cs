@@ -205,7 +205,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 120);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(763, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(669, 441);
             this.dataGridView1.TabIndex = 8;
             // 
             // p1g10DataSet
@@ -270,7 +270,7 @@
             this.button13.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button13.Location = new System.Drawing.Point(901, 501);
+            this.button13.Location = new System.Drawing.Point(794, 501);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(122, 60);
             this.button13.TabIndex = 12;
@@ -296,7 +296,7 @@
             this.FiltrosJogadores.Controls.Add(this.label4);
             this.FiltrosJogadores.Controls.Add(this.textBox1);
             this.FiltrosJogadores.Controls.Add(this.label3);
-            this.FiltrosJogadores.Location = new System.Drawing.Point(797, 120);
+            this.FiltrosJogadores.Location = new System.Drawing.Point(690, 120);
             this.FiltrosJogadores.Name = "FiltrosJogadores";
             this.FiltrosJogadores.Size = new System.Drawing.Size(226, 311);
             this.FiltrosJogadores.TabIndex = 13;
@@ -415,7 +415,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(47, 26);
+            this.textBox1.Location = new System.Drawing.Point(47, 27);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(173, 20);
             this.textBox1.TabIndex = 1;
@@ -446,7 +446,7 @@
             this.FiltrosSocios.Controls.Add(this.label9);
             this.FiltrosSocios.Controls.Add(this.textBox2);
             this.FiltrosSocios.Controls.Add(this.label10);
-            this.FiltrosSocios.Location = new System.Drawing.Point(1029, 120);
+            this.FiltrosSocios.Location = new System.Drawing.Point(690, 120);
             this.FiltrosSocios.Name = "FiltrosSocios";
             this.FiltrosSocios.Size = new System.Drawing.Size(226, 311);
             this.FiltrosSocios.TabIndex = 14;
@@ -557,7 +557,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(47, 26);
+            this.textBox2.Location = new System.Drawing.Point(47, 27);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(173, 20);
             this.textBox2.TabIndex = 1;
@@ -580,7 +580,7 @@
             this.FiltrosClaques.Controls.Add(this.label12);
             this.FiltrosClaques.Controls.Add(this.textBox3);
             this.FiltrosClaques.Controls.Add(this.label14);
-            this.FiltrosClaques.Location = new System.Drawing.Point(1261, 120);
+            this.FiltrosClaques.Location = new System.Drawing.Point(690, 120);
             this.FiltrosClaques.Name = "FiltrosClaques";
             this.FiltrosClaques.Size = new System.Drawing.Size(226, 311);
             this.FiltrosClaques.TabIndex = 15;
@@ -623,7 +623,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(47, 26);
+            this.textBox3.Location = new System.Drawing.Point(47, 27);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(173, 20);
             this.textBox3.TabIndex = 1;
@@ -646,7 +646,7 @@
             this.FiltrosStaff.Controls.Add(this.label17);
             this.FiltrosStaff.Controls.Add(this.textBox4);
             this.FiltrosStaff.Controls.Add(this.label18);
-            this.FiltrosStaff.Location = new System.Drawing.Point(1493, 120);
+            this.FiltrosStaff.Location = new System.Drawing.Point(690, 120);
             this.FiltrosStaff.Name = "FiltrosStaff";
             this.FiltrosStaff.Size = new System.Drawing.Size(226, 311);
             this.FiltrosStaff.TabIndex = 16;
@@ -690,7 +690,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(47, 26);
+            this.textBox4.Location = new System.Drawing.Point(47, 27);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(173, 20);
             this.textBox4.TabIndex = 1;
@@ -716,7 +716,7 @@
             this.FiltrosCentroTreinos.Controls.Add(this.label15);
             this.FiltrosCentroTreinos.Controls.Add(this.textBox5);
             this.FiltrosCentroTreinos.Controls.Add(this.label22);
-            this.FiltrosCentroTreinos.Location = new System.Drawing.Point(1725, 120);
+            this.FiltrosCentroTreinos.Location = new System.Drawing.Point(690, 120);
             this.FiltrosCentroTreinos.Name = "FiltrosCentroTreinos";
             this.FiltrosCentroTreinos.Size = new System.Drawing.Size(226, 311);
             this.FiltrosCentroTreinos.TabIndex = 17;
@@ -784,7 +784,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(47, 26);
+            this.textBox5.Location = new System.Drawing.Point(47, 27);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(173, 20);
             this.textBox5.TabIndex = 1;
@@ -812,7 +812,7 @@
             this.FiltrosEstadios.Controls.Add(this.label36);
             this.FiltrosEstadios.Controls.Add(this.textBox6);
             this.FiltrosEstadios.Controls.Add(this.label26);
-            this.FiltrosEstadios.Location = new System.Drawing.Point(1957, 120);
+            this.FiltrosEstadios.Location = new System.Drawing.Point(690, 120);
             this.FiltrosEstadios.Name = "FiltrosEstadios";
             this.FiltrosEstadios.Size = new System.Drawing.Size(226, 311);
             this.FiltrosEstadios.TabIndex = 18;
@@ -896,7 +896,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(47, 26);
+            this.textBox6.Location = new System.Drawing.Point(47, 27);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(173, 20);
             this.textBox6.TabIndex = 1;
@@ -912,7 +912,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(901, 437);
+            this.button14.Location = new System.Drawing.Point(794, 437);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(122, 58);
             this.button14.TabIndex = 19;
@@ -922,7 +922,7 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(806, 437);
+            this.button15.Location = new System.Drawing.Point(690, 437);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(80, 46);
             this.button15.TabIndex = 20;
@@ -932,7 +932,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(2198, 573);
+            this.ClientSize = new System.Drawing.Size(937, 573);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.FiltrosEstadios);
