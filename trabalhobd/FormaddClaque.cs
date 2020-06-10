@@ -56,9 +56,9 @@ namespace trabalhobd
 
             cmd.CommandText = "INSERT INTO Clube.Claque ([nome], [localizacao_sede], [bancada]) VALUES (@nome,@localizacao_sede,@bancada);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nome", textBox1.Text);
-            cmd.Parameters.AddWithValue("@localizacao_sede", textBox2.Text);
-            cmd.Parameters.AddWithValue("@bancada", textBox3.Text);
+            cmd.Parameters.Add("@nome", SqlDbType.VarChar,100).Value = textBox1.Text;
+            cmd.Parameters.Add("@localizacao_sede", SqlDbType.VarChar,100).Value = textBox2.Text;
+            cmd.Parameters.Add("@bancada", SqlDbType.VarChar,30).Value = textBox3.Text;
             cmd.Connection = cn;
 
             try

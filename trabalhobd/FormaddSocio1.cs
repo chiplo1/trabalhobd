@@ -47,7 +47,7 @@ namespace trabalhobd
             Socio S = new Socio();
             String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
             SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", nif);
+            cmd.Parameters.AddWithValue("@getnif", SqlDbType.Int).Value = nif;
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -65,13 +65,14 @@ namespace trabalhobd
                     return;
 
                 String d = dateTimePicker2.Text.Substring(6, 4) + dateTimePicker2.Text.Substring(3, 2) + dateTimePicker2.Text.Substring(0, 2);
+                var date = DateTime.ParseExact(d, "yyyymmdd", null);
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandText = "INSERT INTO Clube.Socio ([id_pessoa],[data_inscricao], [id_claque]) VALUES (@id_pessoa,@data_inscricao,@id_claque);";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@id_pessoa", S.PessoaID);
-                cmd.Parameters.AddWithValue("@data_inscricao", d);
-                cmd.Parameters.AddWithValue("@id_claque", textBox3.Text);
+                cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = S.PessoaID;
+                cmd.Parameters.Add("@data_inscricao", SqlDbType.Date).Value = date;
+                cmd.Parameters.Add("@id_claque", SqlDbType.Int).Value = textBox3.Text;
                 cmd.Connection = cn;
 
                 try

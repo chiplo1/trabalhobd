@@ -235,7 +235,7 @@ namespace trabalhobd
             currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Staff" + filtro, cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM staff" + filtro, cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();

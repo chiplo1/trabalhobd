@@ -23,6 +23,7 @@ namespace trabalhobd
         private SqlConnection cn;
         private String currentselected;
         private int getnif;
+        private int pessoaid;
 
         private SqlConnection getSGBDConnection()
         {
@@ -44,25 +45,61 @@ namespace trabalhobd
         {
             if (HasPerson())
             {
+                String commandText;
+                SqlCommand cmd;
+                Int32 num;
                 switch (currentselected)
                 {
                     case "jogador":
-                        Form f = new FormaddJogador1(getnif, cn);
-                        this.Close();
-                        f.TopMost = true;
-                        f.Show();
+                        verifySGBDConnection();
+                        commandText = "select COUNT(*) FROM Clube.Jogador WHERE id_pessoa=@pessoaid";
+                        cmd = new SqlCommand(commandText, cn);
+                        cmd.Parameters.AddWithValue("@pessoaid", SqlDbType.Int).Value = pessoaid;
+                        num = Convert.ToInt32(cmd.ExecuteScalar());
+                        cn.Close();
+                        if (num == 0)
+                        {
+                            Form f = new FormaddJogador1(getnif, cn);
+                            this.Close();
+                            f.TopMost = true;
+                            f.Show();
+                        }
+                        else
+                            MessageBox.Show("Já existe um jogador com este NIF!");
                         break;
                     case "staff":
-                        Form f2 = new FormaddStaff1(getnif, cn);
-                        this.Close();
-                        f2.TopMost = true;
-                        f2.ShowDialog();
+                        verifySGBDConnection();
+                        commandText = "select COUNT(*) FROM Clube.Staff WHERE id_pessoa=@pessoaid";
+                        cmd = new SqlCommand(commandText, cn);
+                        cmd.Parameters.AddWithValue("@pessoaid", SqlDbType.Int).Value = pessoaid;
+                        num = Convert.ToInt32(cmd.ExecuteScalar());
+                        cn.Close();
+                        if (num == 0)
+                        {
+                            Form f2 = new FormaddStaff1(getnif, cn);
+                            this.Close();
+                            f2.TopMost = true;
+                            f2.ShowDialog();
+                        }
+                        else
+                            MessageBox.Show("Já existe um membro do staff com este NIF!");
                         break;
                     case "socio":
-                        Form f3 = new FormaddSocio1(getnif, cn);
-                        this.Close();
-                        f3.TopMost = true;
-                        f3.ShowDialog();
+                        verifySGBDConnection();
+                        commandText = "select COUNT(*) FROM Clube.Socio WHERE id_pessoa=@pessoaid";
+                        cmd = new SqlCommand(commandText, cn);
+                        cmd.Parameters.AddWithValue("@pessoaid", SqlDbType.Int).Value = pessoaid;
+                        num = Convert.ToInt32(cmd.ExecuteScalar());
+                        cn.Close();
+                        if (num == 0)
+                        {
+                            Form f3 = new FormaddSocio1(getnif, cn);
+                            this.Close();
+                            f3.TopMost = true;
+                            f3.ShowDialog();
+                        }
+                        else
+                            MessageBox.Show("Já existe um sócio com este NIF!");
                         break;
                     default:
                         break;
@@ -97,20 +134,44 @@ namespace trabalhobd
             
         }
 
+
         private bool HasPerson()
         {
+         
             getnif = Int32.Parse(textBox1.Text);
+
             verifySGBDConnection();
             String commandText = "select COUNT(*) FROM Clube.Pessoa WHERE nif=@getnif";
             SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", getnif);
+            cmd.Parameters.AddWithValue("@getnif", SqlDbType.Int).Value = getnif;
             Int32 b = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
             if (b == 0)
                 return false;
             else
-                return true;
+                verifySGBDConnection();
+                commandText = "select id_pessoa FROM Clube.Pessoa WHERE nif=@getnif";
+                cmd = new SqlCommand(commandText, cn);
+                cmd.Parameters.AddWithValue("@getnif", SqlDbType.Int).Value = getnif;
+                pessoaid = Convert.ToInt32(cmd.ExecuteScalar());
+            return true;
             
+        }
+
+        private void textBox1_Validated(object sender, EventArgs e)
+        {
+            var isNumeric = int.TryParse(textBox1.Text, out _);
+            if (!isNumeric)
+            {
+                MessageBox.Show("O NIF introduzido tem de ser um valor numérico!");
+                textBox1.Clear();
+            }
+            else if (textBox1.Text.Length != 9)
+            {
+                MessageBox.Show("O NIF deve ter 9 caracteres numéricos.");
+                textBox1.Clear();
+                
+            }
         }
     }
 }

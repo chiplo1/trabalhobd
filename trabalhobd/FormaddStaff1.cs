@@ -49,11 +49,11 @@ namespace trabalhobd
             Staff S = new Staff();
             String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
             SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", nif);
+            cmd.Parameters.AddWithValue("@getnif", SqlDbType.Int).Value = nif;
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                S.Nome = reader["nome"].ToString();
+                S.PessoaID = reader["id_pessoa"].ToString();
             }
 
             cn.Close();
@@ -68,13 +68,14 @@ namespace trabalhobd
 
             SqlCommand cmd = new SqlCommand();
             String d = dateTimePicker1.Text.Substring(6,4) + dateTimePicker1.Text.Substring(3, 2) + dateTimePicker1.Text.Substring(0, 2);
+            var date = DateTime.ParseExact(d, "yyyymmdd", null);
 
 
-            cmd.CommandText = "INSERT INTO Clube.Staff ([nome], [tipo], [data_termino]) VALUES (@nome,@tipo,@data_termino);";
+            cmd.CommandText = "INSERT INTO Clube.Staff ([id_pessoa], [tipo], [data_termino]) VALUES (@id_pessoa,@tipo,@data_termino);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nome", S.Nome);
-            cmd.Parameters.AddWithValue("@tipo", textBox1.Text);
-            cmd.Parameters.AddWithValue("@data_termino",d);
+            cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = S.PessoaID;
+            cmd.Parameters.Add("@tipo", SqlDbType.VarChar, 100).Value = textBox1.Text;
+            cmd.Parameters.Add("@data_termino", SqlDbType.Date).Value = date;
             cmd.Connection = cn;
 
             try

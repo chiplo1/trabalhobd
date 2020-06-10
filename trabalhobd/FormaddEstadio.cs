@@ -50,15 +50,17 @@ namespace trabalhobd
 
             SqlCommand cmd = new SqlCommand();
             String d = dateTimePicker1.Text.Substring(6, 4) + dateTimePicker1.Text.Substring(3, 2) + dateTimePicker1.Text.Substring(0, 2);
+            var date = DateTime.ParseExact(d, "yyyymmdd", null);
+
 
 
             cmd.CommandText = "INSERT INTO Clube.Estadio ([nome], [data_inauguracao], [arquiteto], [lotacao], [localizacao]) VALUES (@nome,@data_inauguracao,@arquiteto,@lotacao,@localizacao);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nome", textBox1.Text);
-            cmd.Parameters.AddWithValue("@arquiteto", textBox2.Text);
-            cmd.Parameters.AddWithValue("@lotacao", textBox3.Text);
-            cmd.Parameters.AddWithValue("@localizacao", textBox4.Text);
-            cmd.Parameters.AddWithValue("@data_inauguracao", d);
+            cmd.Parameters.Add("@nome", SqlDbType.VarChar, 100).Value = textBox1.Text;
+            cmd.Parameters.Add("@arquiteto", SqlDbType.VarChar,100).Value = textBox2.Text;
+            cmd.Parameters.Add("@lotacao", SqlDbType.Int).Value = textBox3.Text;
+            cmd.Parameters.Add("@localizacao", SqlDbType.VarChar,100).Value = textBox4.Text;
+            cmd.Parameters.Add("@data_inauguracao", SqlDbType.Date).Value = date;
             cmd.Connection = cn;
 
             try

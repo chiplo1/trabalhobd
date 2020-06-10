@@ -52,13 +52,15 @@ namespace trabalhobd
 
             SqlCommand cmd = new SqlCommand();
             String d = dateTimePicker1.Text.Substring(6, 4) + dateTimePicker1.Text.Substring(3, 2) + dateTimePicker1.Text.Substring(0, 2);
+            var date = DateTime.ParseExact(d, "yyyymmdd", null);
+
 
 
             cmd.CommandText = "INSERT INTO Clube.CentroTreinos ([nome], [data_inauguracao], [localizacao]) VALUES (@nome,@data_inauguracao,@localizacao);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nome", textBox1.Text);
-            cmd.Parameters.AddWithValue("@localizacao", textBox2.Text);
-            cmd.Parameters.AddWithValue("@data_inauguracao", d);
+            cmd.Parameters.Add("@nome", SqlDbType.VarChar,100).Value = textBox1.Text;
+            cmd.Parameters.Add("@localizacao", SqlDbType.VarChar,100).Value = textBox2.Text;
+            cmd.Parameters.Add("@data_inauguracao", SqlDbType.Date).Value = date;
             cmd.Connection = cn;
 
             try

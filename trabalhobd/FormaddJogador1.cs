@@ -47,7 +47,7 @@ namespace trabalhobd
             Jogador J = new Jogador();
             String commandText = "select * FROM Clube.Pessoa WHERE nif=@getnif";
             SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.AddWithValue("@getnif", nif);
+            cmd.Parameters.AddWithValue("@getnif", SqlDbType.Int).Value = nif;
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -65,14 +65,16 @@ namespace trabalhobd
 
             SqlCommand cmd = new SqlCommand();
             String d = dateTimePicker1.Text.Substring(6, 4) + dateTimePicker1.Text.Substring(3, 2) + dateTimePicker1.Text.Substring(0, 2);
+            var date = DateTime.ParseExact(d, "yyyymmdd", null);
+
 
 
             cmd.CommandText = "INSERT INTO Clube.Jogador ([id_pessoa], [posicao], [data_termino], [id_equipa]) VALUES (@id_pessoa,@posicao,@data_termino,@id_equipa);";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id_pessoa", J.PessoaID);
-            cmd.Parameters.AddWithValue("@posicao", textBox1.Text);
-            cmd.Parameters.AddWithValue("@id_equipa", textBox2.Text);
-            cmd.Parameters.AddWithValue("@data_termino", d);
+            cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = J.PessoaID;
+            cmd.Parameters.Add("@posicao", SqlDbType.VarChar,30).Value = textBox1.Text;
+            cmd.Parameters.Add("@id_equipa", SqlDbType.Int).Value = textBox2.Text;
+            cmd.Parameters.Add("@data_termino", SqlDbType.Date).Value = date;
             cmd.Connection = cn;
 
             try

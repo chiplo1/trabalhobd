@@ -12,10 +12,11 @@ namespace trabalhobd
 	public class Staff
 	{
 		private String _id_staff;
-		private String _nome;
+		private String _pessoaID;
 		private String _tipo;
 		private String _data_termino;
 		private String _data_nascimento;
+		private String _nome;
 
 		public String Id_staff
 		{
@@ -29,6 +30,12 @@ namespace trabalhobd
 					}
 					_id_staff = value;
 			}
+		}
+
+		public String PessoaID
+		{
+			get { return _pessoaID; }
+			set { _pessoaID = value; }
 		}
 
 		public String Nome
@@ -57,17 +64,17 @@ namespace trabalhobd
 
 		public override String ToString()
 		{
-			return Id_staff + "   " + Nome + "   " + Tipo + "   " + Data_termino;
+			return Id_staff + "   " + PessoaID + "   " + Tipo + "   " + Data_termino;
 		}
 
 		public Staff() : base()
 		{
 		}
 
-		public Staff(String id_staff, String nome, String tipo, String data_termino, String data_nascimento) : base()
+		public Staff(String id_staff, String pessoaID, String tipo, String data_termino, String data_nascimento) : base()
 		{
 			this.Id_staff = id_staff;
-			this.Nome = nome;
+			this.PessoaID = pessoaID;
 			this.Tipo = tipo;
 			this.Data_termino = data_termino;
 			this.Data_nascimento = data_nascimento;
