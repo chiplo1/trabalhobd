@@ -114,6 +114,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSetBindingSource)).BeginInit();
@@ -308,6 +309,7 @@
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker3.TabIndex = 14;
+            this.dateTimePicker3.Value = new System.DateTime(2030, 1, 1, 0, 0, 0, 0);
             // 
             // dateTimePicker2
             // 
@@ -322,7 +324,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 12;
-            this.dateTimePicker1.Value = new System.DateTime(1980, 1, 1, 0, 1, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(1900, 1, 1, 0, 1, 0, 0);
             // 
             // label30
             // 
@@ -465,7 +467,7 @@
             this.dateTimePicker7.Name = "dateTimePicker7";
             this.dateTimePicker7.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker7.TabIndex = 22;
-            this.dateTimePicker7.Value = new System.DateTime(2000, 1, 1, 0, 1, 0, 0);
+            this.dateTimePicker7.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // label32
             // 
@@ -658,6 +660,7 @@
             this.dateTimePicker8.Name = "dateTimePicker8";
             this.dateTimePicker8.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker8.TabIndex = 16;
+            this.dateTimePicker8.Value = new System.DateTime(2030, 1, 1, 0, 0, 0, 0);
             // 
             // label11
             // 
@@ -909,17 +912,28 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(901, 464);
+            this.button14.Location = new System.Drawing.Point(901, 437);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(122, 31);
+            this.button14.Size = new System.Drawing.Size(122, 58);
             this.button14.TabIndex = 19;
             this.button14.Text = "Filtrar";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(806, 437);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(80, 46);
+            this.button15.TabIndex = 20;
+            this.button15.Text = "Reiniciar Filtros";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(2198, 573);
+            this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.FiltrosEstadios);
             this.Controls.Add(this.FiltrosCentroTreinos);
@@ -1058,6 +1072,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button button15;
     }
 }
 

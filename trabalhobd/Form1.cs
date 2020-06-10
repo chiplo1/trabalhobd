@@ -58,6 +58,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            button15_Click(sender, e);
             loadJogadores();
         }
 
@@ -70,6 +71,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            button15_Click(sender, e);
             loadSocios();
         }
 
@@ -82,6 +84,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            button15_Click(sender, e);
             loadClaques();
         }
 
@@ -94,6 +97,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = true;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            button15_Click(sender, e);
             loadStaff();
         }
 
@@ -106,6 +110,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = true;
             FiltrosEstadios.Visible = false;
+            button15_Click(sender, e);
             loadCentrosTreino();
         }
 
@@ -118,18 +123,77 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = true;
+            button15_Click(sender, e);
             loadEstadios();
         }
 
 
 
-        private void loadJogadores(string filtro = "")
+        private void loadJogadores()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "jogador";
             if (!verifySGBDConnection())
                 return;
 
+            if (comboBox1.Items.Count < 1)
+            {
+                SqlCommand cmd1 = new SqlCommand("select distinct posicao from jogadores", cn);
+                cmd1.ExecuteNonQuery();
+                DataTable dt1 = new DataTable();
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                da1.Fill(dt1);
+                comboBox1.Items.Clear();
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    comboBox1.Items.Add(dr1["posicao"].ToString());
+                }
+            }
+
+            if (comboBox2.Items.Count < 1)
+            {
+                SqlCommand cmd2 = new SqlCommand("select distinct equipa from jogadores", cn);
+                cmd2.ExecuteNonQuery();
+                DataTable dt2 = new DataTable();
+                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                da2.Fill(dt2);
+                comboBox2.Items.Clear();
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    comboBox2.Items.Add(dr2["equipa"].ToString());
+                }
+            }
+
+            if (comboBox3.Items.Count < 1)
+            {
+                SqlCommand cmd3 = new SqlCommand("select distinct liga from jogadores", cn);
+                cmd3.ExecuteNonQuery();
+                DataTable dt3 = new DataTable();
+                SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                da3.Fill(dt3);
+                comboBox3.Items.Clear();
+                foreach (DataRow dr3 in dt3.Rows)
+                {
+                    comboBox3.Items.Add(dr3["liga"].ToString());
+                }
+            }
+
+            if (!String.IsNullOrEmpty(textBox1.Text))
+                filtro += " and nome like '%'+@nome+'%'";
+            if (comboBox1.SelectedIndex > -1)
+                filtro += " and posicao = '" + comboBox1.SelectedItem + "'";
+            if (comboBox2.SelectedIndex > -1)
+                filtro += " and equipa = '" + comboBox2.SelectedItem + "'";
+            if (comboBox3.SelectedIndex > -1)
+                filtro += " and liga = '" + comboBox3.SelectedItem + "'";
+            filtro += " and data_termino <= '" + dateTimePicker3.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_nasc <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            filtro += " and data_nasc >= '" + dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             SqlCommand cmd = new SqlCommand("select * from jogadores" + filtro, cn);
+            if (!String.IsNullOrEmpty(textBox1.Text))
+                cmd.Parameters.AddWithValue("nome", textBox1.Text);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             DataTable dt = new DataTable();
@@ -163,8 +227,10 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadSocios(string filtro = "")
+        private void loadSocios()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "socio";
             if (!verifySGBDConnection())
                 return;
@@ -197,8 +263,10 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadClaques(string filtro = "")
+        private void loadClaques()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "claque";
             if (!verifySGBDConnection())
                 return;
@@ -230,8 +298,10 @@ namespace trabalhobd
 
         }
 
-        private void loadStaff(string filtro = "")
+        private void loadStaff()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "staff";
             if (!verifySGBDConnection())
                 return;
@@ -262,8 +332,10 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadCentrosTreino(string filtro = "")
+        private void loadCentrosTreino()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "centrotreinos";
             if (!verifySGBDConnection())
                 return;
@@ -293,8 +365,10 @@ namespace trabalhobd
             cn.Close();
         }
 
-        private void loadEstadios(string filtro = "")
+        private void loadEstadios()
         {
+            string filtro = " where 1=1 ";
+
             currentselected = "estadio";
             if (!verifySGBDConnection())
                 return;
@@ -533,34 +607,75 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
 
-            string filtro = " where 1=1";
-
             switch (currentselected)
             {
                 case "jogador":
-                    loadJogadores(filtro);
+                    loadJogadores();
                     break;
                 case "staff":
-                    loadStaff(filtro);
+                    loadStaff();
                     break;
                 case "socio":
-                    loadSocios(filtro);
+                    loadSocios();
                     break;
                 case "estadio":
-                    loadEstadios(filtro);
+                    loadEstadios();
                     break;
                 case "centrotreinos":
-                    loadCentrosTreino(filtro);
+                    loadCentrosTreino();
                     break;
                 case "claque":
-                    loadClaques(filtro);
+                    loadClaques();
                     break;
                 default:
                     break;
             }
         }
 
+        private void button15_Click(object sender, EventArgs e)
+        {
+            // FILTROS JOGADOR
+            textBox1.Text = "";
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
+            comboBox3.SelectedIndex = -1;
+            dateTimePicker3.Value = new DateTime(2030, 01, 01);
+            dateTimePicker1.Value = new DateTime(1900, 01, 01);
+            dateTimePicker2.Value = DateTime.Today;
 
+            // FILTROS SOCIOS
+            textBox2.Text = "";
+            comboBox6.SelectedIndex = -1;
+            dateTimePicker7.Value = new DateTime(1900, 01, 01);
+            dateTimePicker6.Value = DateTime.Today;
+            dateTimePicker5.Value = new DateTime(1900, 01, 01);
+            dateTimePicker4.Value = DateTime.Today;
+
+            // FILTROS CLAQUES
+            textBox3.Text = "";
+            textBox9.Text = "";
+            comboBox8.SelectedIndex = -1;
+
+            // FILTROS STAFF
+            textBox4.Text = "";
+            comboBox12.SelectedIndex = -1;
+            dateTimePicker8.Value = new DateTime(2030, 01, 01);
+
+            // FILTROS CENTROS TREINO
+            textBox5.Text = "";
+            textBox7.Text = "";
+            dateTimePicker10.Value = new DateTime(1900, 01, 01);
+            dateTimePicker9.Value = DateTime.Today;
+
+            // FILTROS ESTADIOS
+            textBox6.Text = "";
+            textBox8.Text = "";
+            textBox10.Text = "";
+            dateTimePicker12.Value = new DateTime(1900, 01, 01);
+            dateTimePicker11.Value = DateTime.Today;
+
+            button14_Click(sender, e);
+        }
     }
 
 }
