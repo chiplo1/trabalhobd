@@ -26,7 +26,6 @@ namespace trabalhobd
 					if (value == null | String.IsNullOrEmpty(value))
 					{
 						throw new Exception("ID staff field can’t be empty");
-						return;
 					}
 					_id_staff = value;
 			}

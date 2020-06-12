@@ -21,7 +21,6 @@ namespace trabalhobd
                 if (value == null | String.IsNullOrEmpty(value))
                 {
                     throw new Exception("O id não pode estar vazio.");
-                    return;
                 }
                 _id_pessoa = value;
         }
@@ -35,7 +34,6 @@ namespace trabalhobd
                 if (value == null | String.IsNullOrEmpty(value))
                 {
                     throw new Exception("O nome da claque não pode estar vazio.");
-                    return;
                 }
                 _nif = value;
             }

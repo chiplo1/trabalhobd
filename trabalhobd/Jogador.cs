@@ -43,7 +43,6 @@ namespace trabalhobd
                 if (value == null | String.IsNullOrEmpty(value))
                 {
                     throw new Exception("O nome do jogador não pode estar vazio.");
-                    return;
                 }
                 _nome = value;
             }

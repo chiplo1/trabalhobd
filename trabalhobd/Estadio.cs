@@ -27,7 +27,6 @@ namespace trabalhobd
 				if (value == null | String.IsNullOrEmpty(value))
 				{
 					throw new Exception("id_estadio field can’t be empty");
-					return;
 				}
 				_id_estadio = value;
 			}
@@ -41,7 +40,6 @@ namespace trabalhobd
 				if (value == null | String.IsNullOrEmpty(value))
 				{
 					throw new Exception("Nome field can’t be empty");
-					return;
 				}
 				_nome = value;
 			}

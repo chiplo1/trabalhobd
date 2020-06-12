@@ -116,6 +116,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSetBindingSource)).BeginInit();
@@ -170,7 +171,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(467, 85);
+            this.button7.Location = new System.Drawing.Point(316, 85);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(146, 31);
             this.button7.TabIndex = 5;
@@ -180,7 +181,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(619, 85);
+            this.button8.Location = new System.Drawing.Point(468, 85);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(146, 31);
             this.button8.TabIndex = 6;
@@ -190,7 +191,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(771, 85);
+            this.button9.Location = new System.Drawing.Point(620, 85);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(146, 31);
             this.button9.TabIndex = 7;
@@ -271,13 +272,14 @@
             this.button13.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button13.Location = new System.Drawing.Point(794, 501);
+            this.button13.Location = new System.Drawing.Point(797, 437);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(122, 60);
             this.button13.TabIndex = 12;
             this.button13.Text = "Refresh";
             this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.button13.Visible = false;
+            this.button13.Click += new System.EventHandler(this.button14_Click);
             // 
             // FiltrosJogadores
             // 
@@ -310,7 +312,7 @@
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker3.TabIndex = 14;
-            this.dateTimePicker3.Value = new System.DateTime(2030, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker3.Value = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
             // 
             // dateTimePicker2
             // 
@@ -365,6 +367,7 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(60, 109);
             this.comboBox3.Name = "comboBox3";
@@ -373,6 +376,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(60, 81);
             this.comboBox2.Name = "comboBox2";
@@ -381,6 +385,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(60, 52);
             this.comboBox1.Name = "comboBox1";
@@ -541,6 +546,7 @@
             // 
             // comboBox6
             // 
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.FormattingEnabled = true;
             this.comboBox6.Location = new System.Drawing.Point(60, 52);
             this.comboBox6.Name = "comboBox6";
@@ -607,6 +613,7 @@
             // 
             // comboBox8
             // 
+            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox8.FormattingEnabled = true;
             this.comboBox8.Location = new System.Drawing.Point(60, 81);
             this.comboBox8.Name = "comboBox8";
@@ -674,6 +681,7 @@
             // 
             // comboBox12
             // 
+            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox12.FormattingEnabled = true;
             this.comboBox12.Location = new System.Drawing.Point(60, 52);
             this.comboBox12.Name = "comboBox12";
@@ -913,7 +921,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(794, 437);
+            this.button14.Location = new System.Drawing.Point(797, 503);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(122, 58);
             this.button14.TabIndex = 19;
@@ -923,7 +931,7 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(690, 437);
+            this.button15.Location = new System.Drawing.Point(700, 515);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(80, 46);
             this.button15.TabIndex = 20;
@@ -931,9 +939,21 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(773, 85);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(160, 31);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "Manter a pessoa associada na base de dados";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(937, 573);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.FiltrosEstadios);
@@ -955,12 +975,12 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(953, 612);
             this.Name = "Form1";
             this.Text = "Soccery";
+            this.Activated += new System.EventHandler(this.button14_Click);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1g10DataSetBindingSource)).EndInit();
@@ -985,11 +1005,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label1;
+
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -1076,6 +1092,7 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

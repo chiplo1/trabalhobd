@@ -58,6 +58,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            checkBox1.Enabled = true;
             button15_Click(sender, e);
             loadJogadores();
         }
@@ -71,6 +72,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            checkBox1.Enabled = true;
             button15_Click(sender, e);
             loadSocios();
         }
@@ -84,6 +86,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            checkBox1.Enabled = false;
             button15_Click(sender, e);
             loadClaques();
         }
@@ -97,6 +100,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = true;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = false;
+            checkBox1.Enabled = true;
             button15_Click(sender, e);
             loadStaff();
         }
@@ -110,6 +114,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = true;
             FiltrosEstadios.Visible = false;
+            checkBox1.Enabled = false;
             button15_Click(sender, e);
             loadCentrosTreino();
         }
@@ -123,6 +128,7 @@ namespace trabalhobd
             FiltrosStaff.Visible = false;
             FiltrosCentroTreinos.Visible = false;
             FiltrosEstadios.Visible = true;
+            checkBox1.Enabled = false;
             button15_Click(sender, e);
             loadEstadios();
         }
@@ -226,9 +232,6 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             
             reader.Close();
             cmd.Dispose();
@@ -577,56 +580,7 @@ namespace trabalhobd
 
         }
 
-        private void button13_Click(object sender, EventArgs e)
-        {
-            switch (currentselected)
-            {
-                case "jogador":
-                    label2.Text = "Lista de jogadores do clube:";
-                    loadJogadores();
-                    break;
-                case "staff":
-                    label2.Text = "Lista do Staff do clube:";
-                    loadStaff();
-                    break;
-                case "socio":
-                    label2.Text = "Lista de sócios do clube:";
-                    loadSocios();
-                    break;
-                case "estadio":
-                    label2.Text = "Lista dos Estádios:";
-                    loadEstadios();
-                    break;
-                case "centrotreinos":
-                    label2.Text = "Lista dos Centros de Treino do clube:";
-                    loadCentrosTreino();
-                    break;
-                case "claque":
-                    label2.Text = "Lista de claques do clube:";
-                    loadClaques();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            dataGridView1.Width = this.Width - 300;
-            dataGridView1.Height = this.Height - 175;
-            button13.Left = dataGridView1.Width + dataGridView1.Left + 125;
-            button14.Left = dataGridView1.Width + dataGridView1.Left + 125;
-            button13.Top = this.Height - 110;
-            button15.Left = dataGridView1.Width + dataGridView1.Left + 15;
-            FiltrosJogadores.Left = dataGridView1.Width + dataGridView1.Left + 20; 
-            FiltrosSocios.Left = dataGridView1.Width + dataGridView1.Left + 20;
-            FiltrosClaques.Left = dataGridView1.Width + dataGridView1.Left + 20;
-            FiltrosStaff.Left = dataGridView1.Width + dataGridView1.Left + 20; 
-            FiltrosCentroTreinos.Left = dataGridView1.Width + dataGridView1.Left + 20; 
-            FiltrosEstadios.Left = dataGridView1.Width + dataGridView1.Left + 20; 
-        }
-
-        private void button8_Click(object sender, EventArgs e) // TO DO - BOTÂO EDITAR
+        private void button8_Click(object sender, EventArgs e) // BOTÂO EDITAR
         {
 
             selection = dataGridView1.SelectedRows;
@@ -724,23 +678,46 @@ namespace trabalhobd
             switch (currentselected)
             {
                 case "jogador":
-                    cmd.CommandText = "delete from clube.jogador where id_jogador in " + toRemove;
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    loadJogadores();
+                    if (checkBox1.Checked)
+                    {
+                        if (!verifySGBDConnection())
+                            return;
+                        cmd.CommandText = "delete from clube.jogador where id_jogador in " + toRemove;
+                        cmd.ExecuteNonQuery();
+                        loadJogadores();
+                        break;
+                    }
+                    deletePessoasToo(toRemove, "jogadores");
                     break;
+
                 case "staff":
-                    cmd.CommandText = "delete from clube.staff where id_staff in " + toRemove;
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    loadStaff();
+                    if (checkBox1.Checked)
+                    {
+                        if (!verifySGBDConnection())
+                            return;
+                        cmd.CommandText = "delete from clube.staff where id_staff in " + toRemove;
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                        loadStaff();
+                        break;
+                    }
+                    deletePessoasToo(toRemove, "staff");
                     break;
+
                 case "socio":
-                    cmd.CommandText = "delete from clube.socio where id_socio in " + toRemove;
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    loadSocios();
+                    if (checkBox1.Checked)
+                    {
+                        if (!verifySGBDConnection())
+                            return;
+                        cmd.CommandText = "delete from clube.socio where id_socio in " + toRemove;
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                        loadSocios();
+                        break;
+                    }
+                    deletePessoasToo(toRemove, "socios");
                     break;
+
                 case "estadio":
                     cmd.CommandText = "delete from clube.estadio where id_estadio in " + toRemove;
                     cmd.ExecuteNonQuery();
@@ -763,12 +740,156 @@ namespace trabalhobd
                     break;
             }
 
-                cn.Close();
+            cn.Close();
                
 
         }
 
-        private void button14_Click(object sender, EventArgs e) // TO DO - BOTÂO FILTRAR
+        private void deletePessoasToo(string toRemove, string v)
+        {
+
+            if (!verifySGBDConnection())
+                return;
+
+            SqlTransaction transaction;
+            transaction = cn.BeginTransaction("SampleTransaction");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.Transaction = transaction;
+            String pessoaToRemove = "( ";
+
+            try
+            {
+                if (v.Equals("jogadores"))
+                {
+                    //guardar os id's das pessoas a remover
+                    cmd.CommandText = "select id_pessoa from clube.jogador where id_jogador in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        pessoaToRemove += reader["id_pessoa"].ToString() + ", ";
+                    }
+
+                    reader.Close();
+
+                    pessoaToRemove += "null)";
+
+                    //delete from tabela clube.jogador
+                    cmd.CommandText = "delete from clube.jogador where id_jogador in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.socio e clube.staff para o caso de esta pessoa também ser socio e/ou staff
+                    cmd.CommandText = "delete from clube.socio where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "delete from clube.staff where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.pessoa
+                    cmd.CommandText = "delete from clube.pessoa where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery(); 
+
+                    transaction.Commit();
+                    loadJogadores();
+                }
+                if (v.Equals("staff"))
+                {
+                    //guardar os id's das pessoas a remover
+                    cmd.CommandText = "select id_pessoa from clube.staff where id_staff in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        pessoaToRemove += reader["id_pessoa"].ToString() + ", ";
+                    }
+
+                    reader.Close();
+
+                    pessoaToRemove += "null)";
+
+                    //delete from tabela clube.staff
+                    cmd.CommandText = "delete from clube.staff where id_staff in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.socio e clube.jogador para o caso de esta pessoa também ser socio e/ou jogador
+                    cmd.CommandText = "delete from clube.socio where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "delete from clube.jogador where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.pessoa
+                    cmd.CommandText = "delete from clube.pessoa where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    loadStaff();
+                }
+                if (v.Equals("socios"))
+                {
+                    //guardar os id's das pessoas a remover
+                    cmd.CommandText = "select id_pessoa from clube.socio where id_socio in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        pessoaToRemove += reader["id_pessoa"].ToString() + ", ";
+                    }
+
+                    reader.Close();
+
+                    pessoaToRemove += "null)";
+
+                    //delete from tabela clube.jogador
+                    cmd.CommandText = "delete from clube.socio where id_socio in " + toRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.jogador e clube.staff para o caso de esta pessoa também ser jogador e/ou staff
+                    cmd.CommandText = "delete from clube.jogador where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "delete from clube.staff where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+
+                    //delete from tabela clube.pessoa
+                    cmd.CommandText = "delete from clube.pessoa where id_pessoa in " + pessoaToRemove;
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    loadSocios();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Remoção Falhou!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                Console.WriteLine("  Message: {0}", ex.Message);
+
+                // Attempt to roll back the transaction.
+                try
+                {
+                    transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    // This catch block will handle any errors that may have occurred
+                    // on the server that would cause the rollback to fail, such as
+                    // a closed connection.
+                    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                    Console.WriteLine("  Message: {0}", ex2.Message);
+                }
+            }
+
+        }
+
+        private void button14_Click(object sender, EventArgs e) // Botão filtrar
         {
             if (!verifySGBDConnection())
                 return;

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace trabalhobd
 {
@@ -18,11 +19,6 @@ namespace trabalhobd
         public Login()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private SqlConnection getSGBDConnection()
@@ -89,9 +85,32 @@ namespace trabalhobd
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void textBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                button1_Click(sender, e);
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
+            button3.Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            button1.Visible = true;
+            button2.Visible = true;
+            button3.Visible = false;
         }
     }
 }
