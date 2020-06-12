@@ -93,7 +93,7 @@ namespace trabalhobd
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // Ir para a pagina de registo
         {
             label5.Visible = false;
             label6.Visible = false;
@@ -101,16 +101,57 @@ namespace trabalhobd
             button1.Visible = false;
             button2.Visible = false;
             button3.Visible = true;
+            textBox1.Text = "";
+            textBox2.Text = "";
+
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) // Registar
         {
-            label5.Visible = true;
-            label6.Visible = true;
-            label7.Visible = true;
-            button1.Visible = true;
-            button2.Visible = true;
-            button3.Visible = false;
+            
+
+            if (!verifySGBDConnection())
+                return;
+
+            String s1 = textBox1.Text;
+            String s2 = textBox2.Text;
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            String commandText = "select COUNT(*) FROM Clube.AppUsers WHERE username = @username";
+            SqlCommand cmd = new SqlCommand(commandText, cn);
+            cmd.Parameters.Add("@username", SqlDbType.VarChar, 100).Value = s1;
+            int num = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+            if (num > 0)
+            {
+                MessageBox.Show("Username " + s1 + " já existe.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox1.Text = "";
+            }
+            else
+            {
+                cmd.CommandText = "INSERT INTO Clube.Appusers ([username], [pass]) VALUES (@username,@pass);";
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add("@username", SqlDbType.VarChar, 30).Value = s1;
+                cmd.Parameters.Add("@pass", SqlDbType.VarChar, 30).Value = s2;
+                cmd.Connection = cn;
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Contra criada com sucesso.");
+
+                label5.Visible = true;
+                label6.Visible = true;
+                label7.Visible = true;
+                button1.Visible = true;
+                button2.Visible = true;
+                button3.Visible = false;
+            }
+            cn.Close();
+
+            
+
         }
     }
 }
