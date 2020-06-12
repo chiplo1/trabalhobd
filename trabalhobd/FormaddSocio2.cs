@@ -22,6 +22,33 @@ namespace trabalhobd
             this.cn = cn;
             this.nif = nif;
             InitializeComponent();
+            dataInitialize();
+        }
+
+        private void dataInitialize()
+        {
+            if (!verifySGBDConnection())
+                return;
+
+
+            if (comboBox1.Items.Count < 1)
+            {
+                SqlCommand cmd2 = new SqlCommand("select distinct nome from Clube.Claque", cn);
+                cmd2.ExecuteNonQuery();
+                DataTable dt2 = new DataTable();
+                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                da2.Fill(dt2);
+                comboBox1.Items.Clear();
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    comboBox1.Items.Add(dr2["nome"].ToString());
+                }
+
+            }
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            cn.Close();
+
+
         }
 
         private SqlConnection getSGBDConnection()
@@ -99,13 +126,30 @@ namespace trabalhobd
                 String d = dateTimePicker2.Text.Substring(6, 4) + dateTimePicker2.Text.Substring(3, 2) + dateTimePicker2.Text.Substring(0, 2);
                 var date = DateTime.ParseExact(d, "yyyymmdd", null);
                 SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandText = "INSERT INTO Clube.Socio ([id_pessoa],[data_inscricao], [id_claque]) VALUES (@id_pessoa,@data_inscricao,@id_claque);";
-                cmd.Parameters.Clear();
-                cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = S.PessoaID;
-                cmd.Parameters.Add("@data_inscricao", SqlDbType.Date).Value = date;
-                cmd.Parameters.Add("@id_claque", SqlDbType.Int).Value = textBox3.Text;
                 cmd.Connection = cn;
+
+                if (string.IsNullOrEmpty(comboBox1.Text))
+                {
+                    cmd.CommandText = "INSERT INTO Clube.Socio ([id_pessoa],[data_inscricao]) VALUES (@id_pessoa,@data_inscricao);";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = S.PessoaID;
+                    cmd.Parameters.Add("@data_inscricao", SqlDbType.Date).Value = date;
+                    cmd.Connection = cn;
+                }
+                else 
+                {
+                    cmd.CommandText = "Select id_claque from Clube.Claque where nome = @nome";
+                    cmd.Parameters.Add("nome", SqlDbType.VarChar, 100).Value = comboBox1.Text;
+                    var id_claque = cmd.ExecuteScalar();
+
+                    cmd.CommandText = "INSERT INTO Clube.Socio ([id_pessoa],[data_inscricao], [id_claque]) VALUES (@id_pessoa,@data_inscricao,@id_claque);";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add("@id_pessoa", SqlDbType.Int).Value = S.PessoaID;
+                    cmd.Parameters.Add("@data_inscricao", SqlDbType.Date).Value = date;
+                    cmd.Parameters.Add("@id_claque", SqlDbType.Int).Value = id_claque;
+                    cmd.Connection = cn;
+                }
+
 
                 try
                 {
@@ -122,6 +166,11 @@ namespace trabalhobd
 
                 this.Close();
             }
+
+        }
+
+        private void FormaddSocio2_Load(object sender, EventArgs e)
+        {
 
         }
     }

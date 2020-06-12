@@ -35,7 +35,7 @@ namespace trabalhobd
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("Data Source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g10;Persist Security Info=True;User ID=p1g10;Password=Bd!complexo1");
+            return new SqlConnection("Data Source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g10;Persist Security Info=True;User ID=p1g10;Password=Bd!complexo1;" + "MultipleActiveResultSets=true;");
         }
 
         private bool verifySGBDConnection()
@@ -149,6 +149,7 @@ namespace trabalhobd
                 {
                     comboBox1.Items.Add(dr1["posicao"].ToString());
                 }
+                cmd1.Dispose();
             }
 
             if (comboBox2.Items.Count < 1)
@@ -163,6 +164,7 @@ namespace trabalhobd
                 {
                     comboBox2.Items.Add(dr2["equipa"].ToString());
                 }
+                cmd2.Dispose();
             }
 
             if (comboBox3.Items.Count < 1)
@@ -177,6 +179,7 @@ namespace trabalhobd
                 {
                     comboBox3.Items.Add(dr3["liga"].ToString());
                 }
+                cmd3.Dispose();
             }
 
             if (!String.IsNullOrEmpty(textBox1.Text))
@@ -223,8 +226,14 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
-
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            
+            reader.Close();
+            cmd.Dispose();
             cn.Close();
+           
         }
 
         private void loadSocios()
@@ -247,6 +256,7 @@ namespace trabalhobd
                 {
                     comboBox6.Items.Add(dr1["claque"].ToString());
                 }
+                cmd1.Dispose();
             }
 
             if (!String.IsNullOrEmpty(textBox2.Text))
@@ -283,8 +293,10 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
-
+            reader.Close();
+            cmd.Dispose();
             cn.Close();
+          
         }
 
         private void loadClaques()
@@ -307,6 +319,7 @@ namespace trabalhobd
                 {
                     comboBox8.Items.Add(dr1["bancada"].ToString());
                 }
+                cmd1.Dispose();
             }
 
             if (!String.IsNullOrEmpty(textBox3.Text))
@@ -343,8 +356,10 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
-
+            reader.Close();
+            cmd.Dispose();
             cn.Close();
+         
 
         }
 
@@ -368,6 +383,7 @@ namespace trabalhobd
                 {
                     comboBox12.Items.Add(dr1["tipo"].ToString());
                 }
+                cmd1.Dispose();
             }
 
             if (!String.IsNullOrEmpty(textBox4.Text))
@@ -401,7 +417,11 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
+            cmd.Dispose();
+           
+            reader.Close();
             cn.Close();
+            
         }
 
         private void loadCentrosTreino()
@@ -447,9 +467,13 @@ namespace trabalhobd
                 dt.Rows.Add(S.Id_centro_treinos, S.Nome, S.Data_inauguracao, S.Localizacao);
 
             }
+           
 
             dataGridView1.DataSource = dt;
+            cmd.Dispose();
+            reader.Close();
             cn.Close();
+            
         }
 
         private void loadEstadios()
@@ -505,7 +529,10 @@ namespace trabalhobd
             }
 
             dataGridView1.DataSource = dt;
+            cmd.Dispose();
+            reader.Close();
             cn.Close();
+           
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -601,8 +628,6 @@ namespace trabalhobd
 
         private void button8_Click(object sender, EventArgs e) // TO DO - BOTÂO EDITAR
         {
-            if (!verifySGBDConnection())
-                return;
 
             selection = dataGridView1.SelectedRows;
 
@@ -617,19 +642,46 @@ namespace trabalhobd
                 return;
             }
 
+            String toUpdate = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+            DialogResult dialogResult = MessageBox.Show("Pretende actualizar os dados do elemento com o id " + toUpdate + " da tabela " + currentselected + "?", "Actualizar elemento.", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
             switch (currentselected)
             {
                 case "jogador":
+                    Form f1 = new UpdateJogador(toUpdate, cn);
+                    f1.TopMost = true;
+                    f1.ShowDialog();
                     break;
                 case "staff":
+                    Form f2 = new UpdateStaff(toUpdate, cn);
+                    f2.TopMost = true;
+                    f2.ShowDialog();
                     break;
                 case "socio":
+                    Form f3 = new UpdateSocio(toUpdate, cn);
+                    f3.TopMost = true;
+                    f3.ShowDialog();
                     break;
                 case "estadio":
+                    Form f4 = new UpdateEstadio(toUpdate, cn);
+                    f4.TopMost = true;
+                    f4.ShowDialog();
                     break;
                 case "centrotreinos":
+                    Form f5 = new UpdateCentroTreinos(toUpdate, cn);
+                    f5.TopMost = true;
+                    f5.ShowDialog();
                     break;
                 case "claque":
+                    Form f6 = new UpdateClaque(toUpdate, cn);
+                    f6.TopMost = true;
+                    f6.ShowDialog();
                     break;
                 default:
                     break;
@@ -674,31 +726,37 @@ namespace trabalhobd
                 case "jogador":
                     cmd.CommandText = "delete from clube.jogador where id_jogador in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadJogadores();
                     break;
                 case "staff":
                     cmd.CommandText = "delete from clube.staff where id_staff in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadStaff();
                     break;
                 case "socio":
                     cmd.CommandText = "delete from clube.socio where id_socio in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadSocios();
                     break;
                 case "estadio":
                     cmd.CommandText = "delete from clube.estadio where id_estadio in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadEstadios();
                     break;
                 case "centrotreinos":
                     cmd.CommandText = "delete from clube.centrotreinos where id_centro_treinos in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadCentrosTreino();
                     break;
                 case "claque":
                     cmd.CommandText = "delete from clube.claque where id_claque in " + toRemove;
                     cmd.ExecuteNonQuery();
+                    cmd.Dispose();
                     loadClaques();
                     break;
                 default:
@@ -706,6 +764,7 @@ namespace trabalhobd
             }
 
                 cn.Close();
+               
 
         }
 

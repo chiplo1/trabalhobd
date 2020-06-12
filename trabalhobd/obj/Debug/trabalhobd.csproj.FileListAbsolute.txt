@@ -48,3 +48,10 @@ C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\t
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.csproj.CoreCompileInputs.cache
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.exe
 C:\Users\guilh\OneDrive\Ambiente de Trabalho\BD\trabalho\trabalhobd\trabalhobd\trabalhobd\obj\Debug\trabalhobd.pdb
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateJogador.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.Login.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateSocio.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateClaque.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateStaff.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateCentroTreinos.resources
+C:\Users\danie\Desktop\trabalhobd\trabalhobd\obj\Debug\trabalhobd.UpdateEstadio.resources
