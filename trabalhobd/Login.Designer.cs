@@ -146,9 +146,9 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Location = new System.Drawing.Point(12, 380);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(289, 13);
+            this.label7.Size = new System.Drawing.Size(295, 13);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Universidade de Aveiro - Disciplina de Bse de Dados - 2020";
+            this.label7.Text = "Universidade de Aveiro - Disciplina de Base de Dados - 2020";
             // 
             // button2
             // 
