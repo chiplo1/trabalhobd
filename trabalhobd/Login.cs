@@ -47,7 +47,8 @@ namespace trabalhobd
             if (!verifySGBDConnection())
                 return;
             
-            String commandText = "select COUNT(*) FROM Clube.AppUsers WHERE username = @username";
+
+            String commandText = "select COUNT(*) FROM Clube.AppUsers WHERE LoginName = @username";
             SqlCommand cmd = new SqlCommand(commandText, cn);
             cmd.Parameters.Add("@username", SqlDbType.VarChar,100).Value = s1;
             int num = Convert.ToInt32(cmd.ExecuteScalar());
@@ -56,17 +57,32 @@ namespace trabalhobd
             if (num == 0)
             {
                 MessageBox.Show("Username Inválido", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox1.Clear();
+                textBox2.Clear();
             }
             else
             {
-                commandText = "select pass FROM Clube.AppUsers WHERE username = @username";
-                cmd = new SqlCommand(commandText, cn);
-                cmd.Parameters.Add("@username", SqlDbType.VarChar, 100).Value = s1;
-                String pass = (String)cmd.ExecuteScalar();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Clube.Login";
+                cmd.Parameters.Clear();
+                SqlParameter param1 = new SqlParameter("@LoginName", s1);
+                param1.SqlDbType = SqlDbType.NVarChar;
+                SqlParameter param2 = new SqlParameter("@Password", s2);
+                param2.SqlDbType = SqlDbType.NVarChar;
+                cmd.Parameters.Add(param1);
+                cmd.Parameters.Add(param2);
+                cmd.Parameters.Add("@response", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                cmd.Connection = cn;
+                cmd.ExecuteNonQuery();
+                int res = Convert.ToInt32(cmd.Parameters["@response"].Value);
+
                 cn.Close();
-                if (!s2.Equals(pass))
+                
+                if (res == 0)
                 {
                     MessageBox.Show("Password Inválida", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox2.Clear();
                 }
                 else
                 {
@@ -115,40 +131,57 @@ namespace trabalhobd
 
             String s1 = textBox1.Text;
             String s2 = textBox2.Text;
-            textBox1.Text = "";
-            textBox2.Text = "";
-
-            String commandText = "select COUNT(*) FROM Clube.AppUsers WHERE username = @username";
-            SqlCommand cmd = new SqlCommand(commandText, cn);
-            cmd.Parameters.Add("@username", SqlDbType.VarChar, 100).Value = s1;
-            int num = Convert.ToInt32(cmd.ExecuteScalar());
 
 
-            if (num > 0)
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text))
             {
-                MessageBox.Show("Username " + s1 + " já existe.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox1.Text = "";
+                MessageBox.Show("Necessário introduzir um username e uma password!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            else 
             {
-                cmd.CommandText = "INSERT INTO Clube.Appusers ([username], [pass]) VALUES (@username,@pass);";
-                cmd.Parameters.Clear();
-                cmd.Parameters.Add("@username", SqlDbType.VarChar, 30).Value = s1;
-                cmd.Parameters.Add("@pass", SqlDbType.VarChar, 30).Value = s2;
-                cmd.Connection = cn;
 
-                cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Contra criada com sucesso.");
+                String commandText = "select COUNT(*) FROM Clube.AppUsers WHERE LoginName = @username";
+                SqlCommand cmd = new SqlCommand(commandText, cn);
+                cmd.Parameters.Add("@username", SqlDbType.NVarChar, 40).Value = s1;
+                int num = Convert.ToInt32(cmd.ExecuteScalar());
 
-                label5.Visible = true;
-                label6.Visible = true;
-                label7.Visible = true;
-                button1.Visible = true;
-                button2.Visible = true;
-                button3.Visible = false;
+
+                if (num > 0)
+                {
+                    MessageBox.Show("Username " + s1 + " já existe.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Text = "";
+                }
+                else
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Clube.AddUser";
+                    cmd.Parameters.Clear();
+                    SqlParameter param1 = new SqlParameter("@Login", s1);
+                    param1.SqlDbType = SqlDbType.NVarChar;
+                    SqlParameter param2 = new SqlParameter("@Password", s2);
+                    param2.SqlDbType = SqlDbType.NVarChar;
+                    cmd.Parameters.Add(param1);
+                    cmd.Parameters.Add(param2);
+
+                    cmd.Connection = cn;
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Contra criada com sucesso.");
+                    textBox1.Clear();
+                    textBox2.Clear();
+
+                    label5.Visible = true;
+                    label6.Visible = true;
+                    label7.Visible = true;
+                    button1.Visible = true;
+                    button2.Visible = true;
+                    button3.Visible = false;
+                }
+                cn.Close();
             }
-            cn.Close();
+
 
             
 
